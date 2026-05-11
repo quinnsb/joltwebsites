@@ -68,7 +68,9 @@ artifacts/site-sprint-studio/src/
 
 **To change fonts:**
 - `src/index.css` line 1 — Google Fonts import URL
-- `src/index.css` → `--app-font-sans` and `--app-font-display` variables
+- `src/index.css` → `--app-font-sans` (DM Sans) and `--app-font-display` (Barlow Condensed) variables
+- Display font: Barlow Condensed 700/800 — bold editorial style, inspired by Jolt branding
+- Body font: DM Sans 400/500 — clean, modern reading text
 
 **To wire up the contact form:**
 - `src/components/TeardownForm.tsx` → `onSubmit` function
@@ -98,5 +100,8 @@ artifacts/site-sprint-studio/src/
 - Business name: Prairecraft (URL: prairecraft.com)
 - Email: hello@prairecraft.com
 - Location: Bloomington-Normal, Illinois
-- Accent color: forest green (#1a6b3a)
+- Accent color: forest green (#1a6b3a), kept as primary
 - Tone: practical, local, trustworthy, slightly punchy — no agency buzzwords
+- Typography direction: bold, editorial (Barlow Condensed for display), inspired by Jolt branding screenshot
+- Background: warm parchment `hsl(38 22% 95%)`, foreground: warm near-black `hsl(38 12% 9%)`
+- Portfolio logos: attached_assets/ — Heartland Roofing, North Main Landscaping, Glow House Aesthetics
