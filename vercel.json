@@ -2,7 +2,6 @@
   "buildCommand": "pnpm --filter @workspace/site-sprint-studio run build",
   "outputDirectory": "artifacts/site-sprint-studio/dist",
   "installCommand": "pnpm install --frozen-lockfile",
-  "framework": "vite",
   "rewrites": [
     {
       "source": "/(.*)",
