@@ -1,60 +1,70 @@
+import { scrollTo } from '@/lib/scrollTo';
+import { useLocation } from 'wouter';
+
 export function Footer() {
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const [, setLocation] = useLocation();
 
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 border-b border-background/10 pb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 border-b border-background/10 pb-10">
           <div className="lg:col-span-2">
-            <h3 className="font-display font-bold text-2xl mb-4 text-primary-foreground">Site Sprint Studio</h3>
-            <p className="text-background/70 max-w-sm mb-6">
+            <h3 className="font-display font-bold text-2xl mb-3 text-primary-foreground">Prairecraft</h3>
+            <p className="text-background/65 max-w-sm mb-5 text-sm leading-relaxed">
               Websites and landing pages for Bloomington-Normal service businesses.
             </p>
-            <p className="text-sm text-background/50">Built locally in Central Illinois.</p>
+            <p className="text-xs text-background/40">Built locally in Central Illinois.</p>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-primary-foreground">Menu</h4>
+            <h4 className="font-bold mb-4 text-primary-foreground text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3">
+              {[
+                { label: 'How it Works', id: 'how-it-works' },
+                { label: 'Packages', id: 'packages' },
+                { label: 'Examples', id: 'examples' },
+                { label: 'Free Teardown', id: 'free-teardown' },
+              ].map((link) => (
+                <li key={link.id}>
+                  <button
+                    type="button"
+                    onClick={() => scrollTo(link.id)}
+                    className="text-background/65 hover:text-background transition-colors text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/30 rounded"
+                    data-testid={`footer-link-${link.id}`}
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
               <li>
-                <button onClick={() => scrollTo('how-it-works')} className="text-background/70 hover:text-primary transition-colors text-sm" data-testid="footer-link-how">
-                  How it Works
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollTo('packages')} className="text-background/70 hover:text-primary transition-colors text-sm" data-testid="footer-link-packages">
-                  Packages
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollTo('examples')} className="text-background/70 hover:text-primary transition-colors text-sm" data-testid="footer-link-examples">
-                  Examples
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollTo('free-teardown')} className="text-background/70 hover:text-primary transition-colors text-sm" data-testid="footer-link-teardown">
-                  Free Teardown
+                <button
+                  type="button"
+                  onClick={() => setLocation('/portfolio')}
+                  className="text-background/65 hover:text-background transition-colors text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/30 rounded"
+                  data-testid="footer-link-portfolio"
+                >
+                  Portfolio
                 </button>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-primary-foreground">Contact</h4>
-            <a href="mailto:hello@sitesprintstudio.com" className="text-background/70 hover:text-primary transition-colors text-sm block mb-2" data-testid="footer-link-email">
-              hello@sitesprintstudio.com
+            <h4 className="font-bold mb-4 text-primary-foreground text-sm uppercase tracking-wider">Contact</h4>
+            <a
+              href="mailto:hello@prairecraft.com"
+              className="text-background/65 hover:text-background transition-colors text-sm block mb-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/30 rounded"
+              data-testid="footer-link-email"
+            >
+              hello@prairecraft.com
             </a>
+            <p className="text-background/40 text-xs mt-4">Bloomington-Normal, IL</p>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between text-sm text-background/40">
-          <p>© {new Date().getFullYear()} Site Sprint Studio. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Bloomington-Normal, IL</p>
+        <div className="flex flex-col md:flex-row items-center justify-between text-xs text-background/30 gap-2">
+          <p>&copy; {new Date().getFullYear()} Prairecraft. All rights reserved.</p>
+          <p>prairecraft.com</p>
         </div>
       </div>
     </footer>
