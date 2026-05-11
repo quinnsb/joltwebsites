@@ -1,23 +1,14 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, X, Minus, Square, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, X, CheckCircle2, Star, Phone, MapPin, Clock, Shield, Award } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { scrollTo } from '@/lib/scrollTo';
 import { Button } from '@/components/ui/button';
 
-// ─── Browser window chrome wrapper ───────────────────────────────────────────
+// ─── Browser window chrome ────────────────────────────────────────────────────
 
-function BrowserWindow({
-  url,
-  children,
-  className = '',
-}: {
-  url: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+function BrowserWindow({ url, children }: { url: string; children: React.ReactNode }) {
   return (
-    <div className={`rounded-xl overflow-hidden border border-border shadow-xl flex flex-col ${className}`}>
-      {/* Chrome bar */}
+    <div className="rounded-xl overflow-hidden border border-border shadow-xl flex flex-col">
       <div className="flex items-center gap-2 px-3 py-2.5 bg-gray-100 border-b border-gray-200 shrink-0">
         <div className="flex gap-1.5">
           <span className="w-3 h-3 rounded-full bg-red-400" />
@@ -28,413 +19,523 @@ function BrowserWindow({
           {url}
         </div>
       </div>
-      {/* Content */}
-      <div className="flex-1 overflow-hidden">{children}</div>
+      {/* Fixed-height viewport — same for before and after */}
+      <div className="h-[400px] overflow-hidden">{children}</div>
     </div>
   );
 }
 
 // ─── Annotation badge ─────────────────────────────────────────────────────────
 
-function Annotation({
-  label,
-  variant,
-  className = '',
-}: {
-  label: string;
-  variant: 'bad' | 'good';
-  className?: string;
-}) {
+function Tag({ label, bad }: { label: string; bad?: boolean }) {
   return (
-    <span
-      className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border shadow-sm ${
-        variant === 'bad'
-          ? 'bg-red-100 text-red-700 border-red-200'
-          : 'bg-green-100 text-green-700 border-green-200'
-      } ${className}`}
-    >
-      {variant === 'bad' ? <AlertCircle size={9} /> : <CheckCircle2 size={9} />}
+    <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${
+      bad
+        ? 'bg-red-50 text-red-600 border-red-200'
+        : 'bg-green-50 text-green-700 border-green-200'
+    }`}>
+      {bad ? <X size={8} /> : <CheckCircle2 size={8} />}
       {label}
     </span>
   );
 }
 
-// ─── EXAMPLE 1 ── Prairie Ridge Exteriors (Roofing) ──────────────────────────
+// ─── EXAMPLE 1 ─ Heartland Roofing & Siding (BEFORE) ─────────────────────────
 
 function RoofingBefore() {
   return (
-    <div className="bg-[#2d4a6b] text-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav */}
-      <div className="bg-[#1e3450] px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[13px] tracking-wide text-white/90">PRAIRIE RIDGE EXTERIORS</span>
-        <div className="flex gap-2 text-[9px] text-white/60 hidden sm:flex">
-          {['HOME','ABOUT','SERVICES','GALLERY','CONTACT','GET QUOTE','BLOG'].map(l => (
-            <span key={l} className="hover:text-white cursor-pointer">{l}</span>
+    <div className="bg-[#f5f0e8] font-sans text-gray-800" style={{ fontSize: 11 }}>
+      {/* Chaotic top bar */}
+      <div className="bg-[#cc3300] text-white text-center py-1 text-[8px] font-bold">
+        ☎ CALL US TODAY! (309) 555-0142 &nbsp;|&nbsp; SERVING BLOOMINGTON-NORMAL SINCE 1994
+      </div>
+      {/* Header */}
+      <div className="bg-[#1a1a1a] px-3 py-2 flex items-center justify-between">
+        <div>
+          <div className="text-[13px] font-bold text-[#cc3300]" style={{ fontFamily: 'Georgia, serif' }}>
+            HEARTLAND ROOFING &amp; SIDING
+          </div>
+          <div className="text-[7px] text-gray-400">Your Local Exterior Specialists!</div>
+        </div>
+        <div className="grid grid-cols-4 gap-x-2 gap-y-0.5 text-[7.5px] text-gray-300">
+          {['HOME','ABOUT US','SERVICES','ROOFING','SIDING','GUTTERS','WINDOWS','DECKS','CONTACT US','FREE ESTIMATE','GALLERY','BLOG'].map(l => (
+            <span key={l} className="hover:text-red-400 cursor-pointer">{l}</span>
           ))}
         </div>
       </div>
-      {/* Hero */}
-      <div className="px-4 py-6 bg-[#2d4a6b] text-center">
-        <div className="text-[9px] text-white/40 uppercase tracking-widest mb-2">Est. 1998 · Bloomington, IL</div>
-        <h1 className="text-[15px] font-medium text-white/80 mb-2 leading-snug">
-          Welcome to Prairie Ridge Exteriors
+      {/* Hero — no real image, just text on a gradient */}
+      <div className="bg-gradient-to-b from-gray-600 to-gray-500 px-4 py-4 text-center">
+        <p className="text-[9px] text-yellow-300 uppercase tracking-widest mb-1">★ Award Winning Service ★</p>
+        <h1 className="text-[16px] font-bold text-white mb-1" style={{ fontFamily: 'Georgia, serif' }}>
+          Welcome to Heartland Roofing &amp; Siding!
         </h1>
-        <p className="text-[9px] text-white/50 leading-relaxed max-w-xs mx-auto mb-4">
-          We provide quality roofing, siding, gutters, windows, decks, and more for residential and commercial properties in the greater Bloomington-Normal area since 1998. Call us today for a free estimate.
+        <p className="text-[8px] text-gray-300 leading-relaxed mb-2 max-w-xs mx-auto">
+          We are a family-owned exterior company serving Bloomington, Normal, and surrounding communities. 
+          From roofing and siding to gutters, windows, decks and more — we do it all! Call us or fill out 
+          our online form to get your FREE estimate today.
         </p>
-        <button className="bg-[#4a7fa5] text-white text-[9px] px-3 py-1.5 rounded">
-          Learn More
-        </button>
+        <div className="flex gap-2 justify-center">
+          <button className="bg-[#cc3300] text-white text-[8px] px-3 py-1.5 border border-red-700">GET A FREE ESTIMATE</button>
+          <button className="bg-gray-700 text-white text-[8px] px-3 py-1.5 border border-gray-600">VIEW GALLERY</button>
+          <button className="bg-gray-700 text-white text-[8px] px-3 py-1.5 border border-gray-600">ABOUT US</button>
+        </div>
       </div>
-      {/* Services grid — too many */}
-      <div className="bg-gray-100 px-3 py-3">
-        <div className="text-[9px] font-bold text-gray-600 uppercase tracking-wider mb-2 text-center">Our Services</div>
-        <div className="grid grid-cols-3 gap-1.5 text-[8px] text-gray-500">
-          {['Roofing','Siding','Gutters','Windows','Decks','Fencing','Painting','Insulation','Solar'].map(s => (
-            <div key={s} className="bg-white rounded border border-gray-200 p-1.5 text-center">{s}</div>
+      {/* Service dump */}
+      <div className="bg-[#f5f0e8] px-3 py-2 border-t-4 border-[#cc3300]">
+        <p className="text-[9px] font-bold text-center text-[#cc3300] uppercase tracking-wider mb-2">OUR SERVICES</p>
+        <div className="grid grid-cols-4 gap-1 text-[7.5px] text-center text-gray-600">
+          {['Roof Replacement','Roof Repair','Storm Damage','Siding Install','Siding Repair','Gutter Install','Gutter Guards','Window Replace','Entry Doors','Deck Build','Deck Repair','Insulation','Skylight Install','Chimney Repair','Flashing Repair','Attic Venting'].map(s => (
+            <div key={s} className="bg-white border border-gray-200 p-1 rounded">{s}</div>
           ))}
         </div>
       </div>
-      {/* Body copy block */}
-      <div className="px-4 py-3 bg-white">
-        <p className="text-[8px] text-gray-400 leading-relaxed">
-          Prairie Ridge Exteriors has been serving the Bloomington-Normal community for over 25 years. 
-          Our team of experienced professionals is dedicated to providing top-quality workmanship on every project. 
-          We are licensed, bonded, and insured. Contact us for a free quote.
+      {/* Block of copy */}
+      <div className="px-4 py-2 bg-white border-t border-gray-200">
+        <p className="text-[7.5px] text-gray-500 leading-relaxed text-center">
+          Heartland Roofing &amp; Siding LLC is a licensed, bonded, and insured exterior contractor serving McLean County and surrounding areas. We pride ourselves on quality workmanship, honest pricing, and outstanding customer service. All work is backed by our satisfaction guarantee. We accept cash, check, and credit cards. Financing available. BBB accredited. Ask about our senior discount!
         </p>
-        <div className="mt-2 text-[8px] text-gray-300 text-center">
-          Phone: (309) 555-0192 &nbsp;|&nbsp; Email: info@prairieridge.com
-        </div>
       </div>
     </div>
   );
 }
+
+// ─── EXAMPLE 1 ─ Heartland Roofing & Siding (AFTER) ──────────────────────────
 
 function RoofingAfter() {
   return (
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav */}
-      <div className="bg-white border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[11px] text-gray-900">Prairie Ridge Exteriors</span>
-        <div className="flex items-center gap-2">
-          <span className="text-[8px] text-gray-500">Services</span>
-          <span className="text-[8px] text-gray-500">Area</span>
-          <span className="text-[8px] text-gray-500">Reviews</span>
-          <button className="bg-[#b45309] text-white text-[8px] px-2 py-1 rounded font-semibold">
-            Request Inspection
+      {/* Clean nav */}
+      <div className="bg-white border-b border-gray-100 px-4 py-2.5 flex items-center justify-between">
+        <div>
+          <div className="font-bold text-[12px] text-gray-900">Heartland Roofing</div>
+          <div className="text-[7px] text-gray-400">Bloomington-Normal, IL</div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-[8px] text-gray-500 hidden sm:inline">Roofing</span>
+          <span className="text-[8px] text-gray-500 hidden sm:inline">Storm Damage</span>
+          <span className="text-[8px] text-gray-500 hidden sm:inline">Reviews</span>
+          <button className="bg-[#b45309] text-white text-[8px] px-2.5 py-1.5 rounded font-bold">
+            Free Inspection
           </button>
         </div>
       </div>
-      {/* Hero */}
-      <div className="bg-[#1c3a5c] px-4 py-5">
-        <div className="inline-block bg-amber-500 text-white text-[8px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wider">
-          Storm Damage? Act Before Repairs Cost More
-        </div>
-        <h1 className="text-[16px] font-bold text-white leading-tight mb-2">
-          Free roof inspection.<br />48-hour turnaround.
-        </h1>
-        <p className="text-[9px] text-blue-200 leading-relaxed mb-3 max-w-xs">
-          We assess your roof, siding, and gutters honestly. No pushy sales. Just a clear picture of what needs fixing and what can wait.
-        </p>
-        <button className="bg-amber-500 text-white text-[9px] font-bold px-4 py-2 rounded shadow-md">
-          Request a Free Inspection
-        </button>
-        <div className="flex gap-3 mt-3 text-[8px] text-blue-200">
-          <span>✓ Licensed &amp; insured</span>
-          <span>✓ Serving McLean County</span>
-          <span>✓ 200+ local jobs</span>
+      {/* Hero with image block */}
+      <div className="relative">
+        <div className="h-[110px] bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 relative overflow-hidden">
+          {/* Simulated photo texture */}
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.03) 4px, rgba(255,255,255,0.03) 8px)'
+          }} />
+          {/* Overlay content */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-transparent" />
+          <div className="absolute inset-0 px-4 py-3 flex flex-col justify-center">
+            <div className="inline-block bg-amber-500 text-white text-[7px] font-bold px-2 py-0.5 rounded mb-1.5 uppercase tracking-wider w-fit">
+              Storm Damage Specialists
+            </div>
+            <h1 className="text-[15px] font-bold text-white leading-tight">
+              Free roof inspection.<br />48-hour turnaround.
+            </h1>
+          </div>
         </div>
       </div>
-      {/* Reviews strip */}
-      <div className="bg-gray-50 px-3 py-2 border-b border-gray-100">
-        <div className="text-[8px] text-gray-500 font-semibold mb-1.5">What neighbors say:</div>
-        <div className="text-[8px] text-gray-600 italic">"Fast, honest, no upsell. Fixed my storm damage in one day." — Jason M., Normal IL</div>
+      {/* CTA strip */}
+      <div className="bg-amber-600 px-4 py-2 flex items-center justify-between">
+        <p className="text-[8px] text-white font-medium">Insurance claim? We walk you through every step.</p>
+        <button className="bg-white text-amber-700 text-[8px] font-bold px-3 py-1 rounded shadow-sm">Request Inspection</button>
       </div>
-      {/* Process */}
-      <div className="px-3 py-3">
-        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-2">How it works</div>
-        <div className="flex gap-2">
-          {['1. Request', '2. Inspect', '3. Report', '4. Repair'].map((s, i) => (
-            <div key={i} className="flex-1 text-center">
-              <div className="w-5 h-5 rounded-full bg-[#1c3a5c] text-white text-[8px] font-bold flex items-center justify-center mx-auto mb-1">{i+1}</div>
-              <div className="text-[7px] text-gray-500">{s.split('. ')[1]}</div>
+      {/* Trust bar */}
+      <div className="bg-gray-50 border-b border-gray-100 px-4 py-2 flex gap-4">
+        {[['30+ yrs', 'in business'], ['200+', 'local projects'], ['5.0★', '84 reviews'], ['Licensed', '& insured']].map(([a, b]) => (
+          <div key={a} className="text-center">
+            <div className="text-[9px] font-bold text-gray-800">{a}</div>
+            <div className="text-[7px] text-gray-400">{b}</div>
+          </div>
+        ))}
+      </div>
+      {/* Photo gallery row */}
+      <div className="px-4 py-3">
+        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-2">Recent Projects</div>
+        <div className="grid grid-cols-3 gap-1.5">
+          {[
+            'from-slate-600 to-slate-500',
+            'from-stone-600 to-stone-500',
+            'from-zinc-600 to-zinc-500',
+          ].map((g, i) => (
+            <div key={i} className={`h-12 rounded bg-gradient-to-br ${g} relative overflow-hidden`}>
+              <div className="absolute bottom-0 left-0 right-0 bg-black/40 text-[6px] text-white px-1 py-0.5">
+                {['Roof replace · Normal', 'Storm repair · BLN', 'Siding + gutters'][i]}
+              </div>
             </div>
           ))}
         </div>
+      </div>
+      {/* Review */}
+      <div className="px-4 py-2 bg-amber-50 border-t border-amber-100 mx-4 rounded-lg">
+        <div className="flex gap-0.5 mb-0.5">{Array(5).fill(0).map((_, i) => <Star key={i} size={8} className="fill-amber-400 text-amber-400" />)}</div>
+        <p className="text-[8px] text-gray-700 italic">"Quick inspection, honest quote, done in one day. Best contractor experience I've had."</p>
+        <p className="text-[7px] text-gray-400 mt-0.5">— Jason M., Normal IL</p>
       </div>
     </div>
   );
 }
 
-// ─── EXAMPLE 2 ── North Main Landscaping ─────────────────────────────────────
+// ─── EXAMPLE 2 ─ North Main Landscaping (BEFORE) ─────────────────────────────
 
 function LandscapingBefore() {
   return (
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav */}
-      <div className="bg-[#3a5a3a] px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[11px] text-white">NORTH MAIN LANDSCAPING</span>
-        <div className="flex gap-2 text-[8px] text-green-200">
-          {['Home','About','Services','Portfolio','Testimonials','Blog','Contact'].map(l => (
-            <span key={l}>{l}</span>
-          ))}
+      {/* Dated header */}
+      <div className="bg-[#2d5a1b] px-3 py-2">
+        <div className="flex items-center justify-between">
+          <div className="text-[13px] font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>
+            North Main Landscaping
+          </div>
+          <div className="flex gap-2 text-[7.5px] text-green-200 flex-wrap justify-end max-w-[55%]">
+            {['Home','About','Lawn Mowing','Mulching','Spring Cleanup','Fall Cleanup','Snow Removal','Hardscaping','Contact','Request Quote'].map(l => (
+              <span key={l} className="hover:text-white">{l}</span>
+            ))}
+          </div>
         </div>
       </div>
-      {/* Generic hero */}
-      <div className="relative">
-        <div className="bg-gradient-to-b from-green-800 to-green-600 px-4 py-5 text-white text-center">
-          <h1 className="text-[14px] font-semibold mb-1 text-white/80">North Main Landscaping</h1>
-          <p className="text-[9px] text-green-200 mb-3">Serving Bloomington-Normal for over 15 years</p>
-          <button className="bg-white text-green-700 text-[8px] px-3 py-1 rounded border border-green-200">
-            View Our Work
-          </button>
-        </div>
+      {/* Hero - no image */}
+      <div className="bg-gradient-to-b from-[#3d7a22] to-[#2d5a1b] px-4 py-5 text-center">
+        <h1 className="text-[14px] font-semibold text-white mb-1" style={{ fontFamily: 'Georgia, serif' }}>
+          North Main Landscaping Co.
+        </h1>
+        <p className="text-[8px] text-green-200 mb-1">Serving Bloomington-Normal and Surrounding Areas</p>
+        <p className="text-[8px] text-green-300 mb-3">Residential &amp; Commercial | Licensed &amp; Insured | Free Estimates</p>
+        <button className="bg-white text-[#2d5a1b] text-[8px] font-semibold px-3 py-1.5 rounded border border-green-200">
+          View Our Services
+        </button>
       </div>
-      {/* Services dump */}
-      <div className="px-3 py-3">
-        <div className="text-[9px] font-bold text-gray-600 mb-2 text-center">All Services</div>
-        <div className="text-[8px] text-gray-500 leading-loose">
-          Lawn mowing · Mulching · Trimming · Fertilization · Aeration · Overseeding · Weed control · Spring cleanup · Fall cleanup · Leaf removal · Snow removal · Irrigation · Hardscaping · Retaining walls · Patios · Fire pits · Planting · Tree trimming · Stump removal · Drainage
-        </div>
-      </div>
-      {/* Block of text */}
-      <div className="px-3 py-2 bg-gray-50 border-t border-gray-100">
-        <p className="text-[8px] text-gray-400 leading-relaxed">
-          North Main Landscaping is a full-service landscaping company offering residential and commercial services throughout the Bloomington-Normal metro area. Our team of professionals brings years of experience to every project big or small. Contact us today to schedule your free consultation.
+      {/* Service list wall */}
+      <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
+        <p className="text-[9px] font-bold text-gray-600 uppercase tracking-wider text-center mb-1.5">ALL SERVICES</p>
+        <p className="text-[7.5px] text-gray-500 text-center leading-loose">
+          Lawn Mowing &amp; Edging · Spring &amp; Fall Cleanup · Mulching &amp; Bed Work · Fertilization &amp; Weed Control ·
+          Aeration &amp; Overseeding · Shrub &amp; Tree Trimming · Irrigation Install &amp; Repair · Retaining Walls ·
+          Patio &amp; Walkway Install · Landscape Design · Grading &amp; Drainage · Snow Plowing · Salting · Junk Removal ·
+          Stump Grinding · Hydroseeding
         </p>
-        <div className="mt-2 text-[8px] text-gray-300">📞 (309) 555-0147</div>
+      </div>
+      {/* About block */}
+      <div className="px-4 py-3 bg-white border-t border-gray-100">
+        <p className="text-[8px] font-bold text-gray-700 mb-1">About Us</p>
+        <p className="text-[7.5px] text-gray-400 leading-relaxed">
+          North Main Landscaping has been providing quality landscaping services in the Bloomington-Normal area for over 15 years. We are committed to excellence in every project we undertake, from simple lawn maintenance to full landscape design and installation. Our team of experienced professionals takes pride in our work and we are dedicated to making your outdoor spaces look their best. Contact us today for a free estimate.
+        </p>
+      </div>
+      {/* Footer contact */}
+      <div className="px-4 py-2 bg-[#2d5a1b] text-center">
+        <p className="text-[7px] text-green-200">📞 (309) 555-0147 &nbsp;·&nbsp; info@northmainlandscaping.com &nbsp;·&nbsp; Bloomington, IL 61701</p>
       </div>
     </div>
   );
 }
+
+// ─── EXAMPLE 2 ─ North Main Landscaping (AFTER) ──────────────────────────────
 
 function LandscapingAfter() {
   return (
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav */}
-      <div className="bg-white border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[11px] text-gray-900">North Main Landscaping</span>
-        <button className="bg-[#2d6a2d] text-white text-[8px] px-2.5 py-1 rounded font-semibold">
-          Get Spring Quote
+      {/* Clean nav */}
+      <div className="bg-white border-b border-gray-100 px-4 py-2.5 flex items-center justify-between">
+        <div className="font-bold text-[12px] text-gray-900">North Main Landscaping</div>
+        <button className="bg-[#2d6a2d] text-white text-[8px] px-3 py-1.5 rounded font-bold shadow-sm">
+          Get a Free Quote
         </button>
       </div>
-      {/* Seasonal hero */}
-      <div className="bg-[#1e4620] px-4 py-4">
-        <div className="inline-block bg-lime-400 text-green-900 text-[8px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wider">
-          Spring Cleanup — Limited Spots Left
+      {/* Hero with image */}
+      <div className="relative">
+        <div className="h-[120px] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-800 to-green-700" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(134,239,172,0.15) 0%, transparent 60%)'
+          }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="absolute inset-0 px-4 py-3 flex flex-col justify-end">
+            <div className="bg-lime-400 text-green-900 text-[7px] font-bold px-2 py-0.5 rounded w-fit mb-1 uppercase tracking-wider">
+              Spring Cleanup — Book Now
+            </div>
+            <h1 className="text-[16px] font-bold text-white leading-tight">
+              Yard cleanup &amp; mulch.<br />Request your quote.
+            </h1>
+          </div>
         </div>
-        <h1 className="text-[15px] font-bold text-white leading-tight mb-1.5">
-          Spring cleanup &amp; mulch.<br />Request your quote today.
-        </h1>
-        <p className="text-[9px] text-green-200 leading-relaxed mb-3">
-          We handle spring cleanups, mulch delivery, bed edging, and trim for neighborhoods across Bloomington-Normal. One quote, one crew, one day.
-        </p>
-        <button className="bg-lime-400 text-green-900 text-[9px] font-bold px-4 py-2 rounded shadow">
-          Request a Spring Quote
-        </button>
       </div>
-      {/* What's included */}
-      <div className="px-3 py-2.5 bg-gray-50 border-b border-gray-100">
-        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-1.5">Spring package includes:</div>
+      {/* Package card */}
+      <div className="px-4 py-3 border-b border-gray-100">
+        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-2">Spring Cleanup Package</div>
         <div className="grid grid-cols-2 gap-1">
-          {['Debris removal','Bed edging','Mulch (2 cu yd)','Shrub trim'].map(s => (
-            <div key={s} className="flex items-center gap-1 text-[8px] text-gray-600">
-              <CheckCircle2 size={8} className="text-green-600 shrink-0" />{s}
+          {['Debris &amp; leaf removal', 'Bed edging', 'Mulch (2 cu yd)', 'Shrub trim', 'Lawn edge cleanup', 'Haul-away included'].map((s, i) => (
+            <div key={i} className="flex items-center gap-1 text-[7.5px] text-gray-600">
+              <CheckCircle2 size={8} className="text-green-600 shrink-0" />
+              <span dangerouslySetInnerHTML={{ __html: s }} />
             </div>
           ))}
         </div>
+        <button className="mt-3 w-full bg-[#2d6a2d] text-white text-[8px] font-bold py-1.5 rounded">
+          Request Spring Cleanup Quote
+        </button>
       </div>
-      {/* Reviews */}
-      <div className="px-3 py-2">
-        <div className="text-[8px] text-amber-500 font-bold">★★★★★</div>
-        <div className="text-[8px] text-gray-600 italic">"They did our whole yard in one morning. Looked brand new." — Linda K., Bloomington</div>
+      {/* Before/after photo proof */}
+      <div className="px-4 py-3 border-b border-gray-100">
+        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-2">Before &amp; After</div>
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <div className="h-[52px] bg-gradient-to-br from-yellow-800 to-yellow-700 rounded relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.1) 3px, rgba(0,0,0,0.1) 4px)' }} />
+              <div className="absolute bottom-0 left-0 right-0 text-center bg-black/50 text-[6px] text-white py-0.5">Before</div>
+            </div>
+          </div>
+          <div>
+            <div className="h-[52px] bg-gradient-to-br from-green-600 to-emerald-500 rounded relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent, transparent 3px, rgba(255,255,255,0.05) 3px, rgba(255,255,255,0.05) 4px)' }} />
+              <div className="absolute bottom-0 left-0 right-0 text-center bg-black/30 text-[6px] text-white py-0.5">After</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Review */}
+      <div className="px-4 py-2">
+        <div className="flex gap-0.5 mb-0.5">{Array(5).fill(0).map((_, i) => <Star key={i} size={8} className="fill-amber-400 text-amber-400" />)}</div>
+        <p className="text-[8px] text-gray-700 italic">"They did our whole yard in one morning. Looks brand new every spring."</p>
+        <p className="text-[7px] text-gray-400 mt-0.5">— Linda K., Bloomington</p>
       </div>
     </div>
   );
 }
 
-// ─── EXAMPLE 3 ── Glow House Aesthetics ──────────────────────────────────────
+// ─── EXAMPLE 3 ─ Glow House Aesthetics (BEFORE) ──────────────────────────────
 
 function MedSpaBefore() {
   return (
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav — inconsistent */}
-      <div className="bg-[#c49a9a] px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[12px] text-white italic">Glow House Aesthetics</span>
-        <div className="flex gap-1.5 text-[8px] text-white/80 flex-wrap">
-          {['Home','About','Botox','Fillers','Facials','Laser','PRP','Weight Loss','Contact'].map(l => (
-            <span key={l}>{l}</span>
-          ))}
+      {/* Busy header */}
+      <div className="bg-[#d4a0c0]">
+        <div className="text-center py-1 text-[8px] text-white/80">✨ Now accepting new patients ✨ (309) 555-0183</div>
+        <div className="px-3 py-2 flex items-center justify-between border-t border-pink-200">
+          <span className="font-bold text-[13px] text-white italic" style={{ fontFamily: 'Georgia, serif' }}>
+            Glow House Aesthetics
+          </span>
+          <div className="flex flex-wrap gap-1.5 text-[7px] text-white/80 max-w-[55%] justify-end">
+            {['Home','About','Botox','Fillers','Facials','Laser','PRP','Kybella','Morpheus8','Weight Loss','Gift Cards','Contact'].map(l => (
+              <span key={l}>{l}</span>
+            ))}
+          </div>
         </div>
       </div>
-      {/* Hero — treatment dump */}
-      <div className="bg-pink-50 px-4 py-4 text-center">
-        <h1 className="text-[13px] font-semibold text-gray-600 mb-1">Glow House Aesthetics</h1>
-        <p className="text-[9px] text-gray-400 mb-3">Botox · Fillers · Facials · Laser · PRP · Kybella · Morpheus8 · HydraFacial · Weight Loss · Skin Tightening</p>
-        <button className="bg-pink-300 text-white text-[8px] px-3 py-1 rounded">
-          Book Now
+      {/* Hero — no image */}
+      <div className="bg-gradient-to-b from-pink-100 to-rose-50 px-4 py-5 text-center">
+        <p className="text-[9px] text-pink-400 tracking-widest mb-1" style={{ fontFamily: 'Georgia, serif' }}>✦ Beauty &amp; Wellness ✦</p>
+        <h1 className="text-[14px] font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+          Welcome to Glow House Aesthetics
+        </h1>
+        <p className="text-[8px] text-gray-500 mb-3 leading-relaxed max-w-xs mx-auto">
+          We offer a full range of aesthetic treatments including Botox, fillers, laser hair removal, HydraFacial, Morpheus8, Kybella, PRP, weight loss, and much more. Our experienced team is here to help you look and feel your best.
+        </p>
+        <button className="bg-[#d4a0c0] text-white text-[8px] px-4 py-1.5 rounded-full">
+          Book an Appointment
         </button>
       </div>
-      {/* Treatment list */}
-      <div className="px-3 py-2">
-        <div className="text-[8px] font-bold text-gray-500 mb-1.5 text-center">TREATMENTS</div>
-        <div className="grid grid-cols-3 gap-1 text-[7.5px] text-center text-gray-400">
-          {['Botox','Juvederm','Restylane','Sculptra','Kybella','PRP','HydraFacial','Morpheus8','Laser Hair','Laser Resurfacing','Skin Tightening','Weight Loss'].map(t => (
-            <div key={t} className="border border-gray-100 rounded p-1 bg-gray-50">{t}</div>
+      {/* Treatment grid */}
+      <div className="px-3 py-2 border-t border-gray-100">
+        <p className="text-[8px] font-bold text-gray-500 text-center uppercase tracking-wider mb-1.5">OUR TREATMENTS</p>
+        <div className="grid grid-cols-4 gap-1 text-[7px] text-center text-gray-500">
+          {['Botox','Juvederm','Restylane','Sculptra','Kybella','PRP Hair','HydraFacial','Morpheus8','Laser Hair','CO2 Laser','Skin Tight','BBL Photo','Weight Loss','IV Therapy','Lash Lift','Microneed'].map(t => (
+            <div key={t} className="border border-pink-100 rounded p-1 bg-pink-50/50">{t}</div>
           ))}
         </div>
       </div>
-      {/* Footer nav — booking buried */}
-      <div className="bg-gray-100 px-3 py-2 mt-1 text-center">
-        <p className="text-[7px] text-gray-400">To schedule, call (309) 555-0183 or email appointments@glowhouse.com during business hours M–F 9–5</p>
+      {/* Booking copy */}
+      <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 text-center">
+        <p className="text-[7.5px] text-gray-400">To book an appointment call us at (309) 555-0183 or send an email to appointments@glowhouse.com. We are open Monday through Friday 9am–5pm and Saturday 9am–1pm. New patient consultations are available. Please allow 24 hours for email responses.</p>
       </div>
     </div>
   );
 }
 
+// ─── EXAMPLE 3 ─ Glow House Aesthetics (AFTER) ───────────────────────────────
+
 function MedSpaAfter() {
   return (
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
-      {/* Nav */}
-      <div className="bg-white border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-        <span className="font-bold text-[11px] text-gray-900 tracking-wide">Glow House</span>
-        <button className="bg-[#7c3d6b] text-white text-[8px] px-2.5 py-1 rounded font-semibold">
+      {/* Clean nav */}
+      <div className="bg-white border-b border-gray-100 px-4 py-2.5 flex items-center justify-between">
+        <div>
+          <div className="font-bold text-[12px] tracking-wide text-gray-900">Glow House</div>
+          <div className="text-[7px] text-gray-400">Medical Aesthetics · Bloomington, IL</div>
+        </div>
+        <button className="bg-[#7c3d6b] text-white text-[8px] px-3 py-1.5 rounded font-bold shadow-sm">
           Book Consultation
         </button>
       </div>
-      {/* First-visit hero */}
-      <div className="bg-gradient-to-b from-[#f5edf3] to-white px-4 py-4">
-        <div className="inline-block bg-[#7c3d6b]/10 text-[#7c3d6b] text-[8px] font-semibold px-2 py-0.5 rounded-full mb-2">
-          First visit? Start here.
+      {/* Hero with image */}
+      <div className="relative">
+        <div className="h-[115px] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#3d1c35] to-[#7c3d6b]" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 80% 40%, rgba(236,182,220,0.3) 0%, transparent 50%)'
+          }} />
+          <div className="absolute right-0 bottom-0 w-24 h-full opacity-20" style={{
+            backgroundImage: 'linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)'
+          }} />
+          <div className="absolute inset-0 px-4 py-3 flex flex-col justify-center">
+            <div className="bg-[#d4a0c0]/30 text-pink-100 border border-pink-300/30 text-[7px] font-semibold px-2 py-0.5 rounded-full w-fit mb-2">
+              First visit? Start here.
+            </div>
+            <h1 className="text-[15px] font-bold text-white leading-tight">
+              A consultation first.<br />No pressure. No guessing.
+            </h1>
+            <p className="text-[8px] text-pink-200 mt-1">30-min new patient consult — always included.</p>
+          </div>
         </div>
-        <h1 className="text-[15px] font-bold text-gray-900 leading-tight mb-1.5">
-          A consultation first.<br />No pressure. No guessing.
-        </h1>
-        <p className="text-[9px] text-gray-500 leading-relaxed mb-3">
-          Not sure what treatment is right for you? We start every new patient with a 30-minute consultation so you leave with a clear plan, not just a price list.
-        </p>
-        <button className="bg-[#7c3d6b] text-white text-[9px] font-bold px-4 py-2 rounded shadow-sm">
+      </div>
+      {/* CTA button */}
+      <div className="px-4 py-2.5 bg-[#f9f0f6]">
+        <button className="w-full bg-[#7c3d6b] text-white text-[8.5px] font-bold py-2 rounded-lg shadow-sm">
           Book My Free Consultation
         </button>
       </div>
+      {/* Provider + photo block */}
+      <div className="px-4 py-2.5 border-b border-gray-100">
+        <div className="flex items-center gap-3">
+          {/* Simulated photo */}
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#d4a0c0] to-[#7c3d6b] flex items-center justify-center text-white font-bold text-[11px] shrink-0">AK</div>
+          <div>
+            <div className="text-[9px] font-bold text-gray-900">Ashley K., NP — Lead Provider</div>
+            <div className="text-[7px] text-gray-500">8 yrs aesthetics · 400+ patients · Board certified</div>
+            <div className="flex gap-0.5 mt-0.5">{Array(5).fill(0).map((_, i) => <Star key={i} size={7} className="fill-amber-400 text-amber-400" />)}<span className="text-[7px] text-gray-400 ml-0.5">4.9 (112 reviews)</span></div>
+          </div>
+        </div>
+      </div>
       {/* What to expect */}
-      <div className="px-3 py-2.5 bg-[#fdf6fb] border-y border-purple-100">
-        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-1.5">What your first visit looks like:</div>
+      <div className="px-4 py-2.5 bg-[#fdf6fb]">
+        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-1.5">Your first visit:</div>
         <div className="space-y-1">
-          {['30-min skin assessment with a licensed provider','Honest recommendation — no upsell pressure','Leave with a written treatment plan'].map((s, i) => (
+          {[
+            '30-min skin assessment with Ashley',
+            'Personalized treatment recommendation',
+            'Written plan — no obligation to book',
+          ].map((s, i) => (
             <div key={i} className="flex items-start gap-1.5 text-[8px] text-gray-600">
-              <span className="w-3.5 h-3.5 rounded-full bg-[#7c3d6b]/10 text-[#7c3d6b] font-bold flex items-center justify-center shrink-0 text-[7px]">{i+1}</span>
+              <span className="w-3.5 h-3.5 rounded-full bg-[#7c3d6b]/15 text-[#7c3d6b] font-bold flex items-center justify-center shrink-0 text-[7px]">{i+1}</span>
               {s}
             </div>
           ))}
         </div>
       </div>
-      {/* Provider trust */}
-      <div className="px-3 py-2">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-[10px] shrink-0">AK</div>
-          <div>
-            <div className="text-[8px] font-semibold text-gray-900">Ashley K., NP — Lead Provider</div>
-            <div className="text-[7px] text-gray-400">8 years aesthetics · 400+ patients · Bloomington-Normal</div>
-          </div>
+      {/* Treatment photos strip */}
+      <div className="px-4 py-2">
+        <div className="text-[8px] font-bold text-gray-700 uppercase tracking-wider mb-1.5">Popular Treatments</div>
+        <div className="grid grid-cols-3 gap-1.5">
+          {[
+            ['from-rose-300 to-pink-200', 'Botox & Fillers'],
+            ['from-purple-300 to-violet-200', 'Morpheus8'],
+            ['from-pink-300 to-rose-200', 'HydraFacial'],
+          ].map(([g, label]) => (
+            <div key={label} className={`h-10 rounded bg-gradient-to-br ${g} relative`}>
+              <div className="absolute bottom-0 left-0 right-0 bg-black/20 text-[6px] text-white text-center py-0.5 rounded-b">{label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Annotations overlay ──────────────────────────────────────────────────────
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const examples = [
   {
     num: '01',
-    category: 'Roofing / Exteriors',
-    business: 'Prairie Ridge Exteriors',
+    category: 'Roofing & Exteriors',
+    business: 'Heartland Roofing & Siding',
     before: RoofingBefore,
     after: RoofingAfter,
-    beforeUrl: 'prairieridgeexteriors.com',
-    afterUrl: 'prairieridgeexteriors.com/storm-damage',
-    beforeAnnotations: ['Weak generic headline', 'No storm-damage focus', 'Buried CTA', '7-item nav', 'Contact in footer only'],
-    afterAnnotations: ['Storm-specific headline', 'Inspection CTA above fold', 'Trust signals upfront', 'Process section', 'Reviews near CTA'],
+    beforeUrl: 'heartlandroofing-il.com',
+    afterUrl: 'heartlandroofing-il.com/storm-damage',
+    beforeTags: ['12-item nav', 'No storm focus', 'Weak generic headline', 'Buried contact info', 'No trust proof'],
+    afterTags: ['Storm-specific page', 'Inspection CTA prominent', 'Photo proof', 'Trust signals upfront', 'Reviews near CTA'],
     wrong: [
-      'Homepage headline says "Welcome" — no customer benefit',
-      'Contact info buried at the bottom of the page',
-      'Seven nav items create decision paralysis',
-      'No storm damage or insurance-specific content anywhere',
-      'Generic "Learn More" CTA leads nowhere specific',
+      'Homepage headline says "Welcome" with no clear customer benefit',
+      '12-item navigation creates decision paralysis',
+      'No storm damage or insurance claim content despite that being peak demand',
+      'Three competing CTAs all lead to generic pages',
+      'Contact info buried — no click-to-call above the fold',
     ],
     changed: [
-      'Headline targets storm damage directly — matches what people search for',
-      'Request Inspection button appears above the fold and repeats throughout',
-      'Trust signals (licensed, insured, local job count) visible immediately',
-      'Simple 4-step process removes uncertainty about what happens next',
-      'Neighbor review near CTA builds confidence right before the decision',
+      'Headline targets storm damage directly to match high-intent searches',
+      'Single "Request Inspection" CTA appears in nav, hero, and strip — no competing actions',
+      'Project photo gallery shows real completed work above the fold',
+      'Trust bar shows years in business, local project count, and review score',
+      'Customer review appears just before the final CTA',
     ],
-    why: 'After a storm, homeowners are anxious and searching with intent. A generic homepage makes them work too hard to figure out if you do storm damage and how to contact you. A focused page removes every friction point between their search and your inspection request.',
+    why: 'After a storm, homeowners search with urgency. A focused page that speaks to that moment and makes requesting an inspection effortless converts at a significantly higher rate than a generic homepage with a buried phone number.',
   },
   {
     num: '02',
-    category: 'Landscaping / Outdoor Services',
+    category: 'Landscaping & Outdoor Services',
     business: 'North Main Landscaping',
     before: LandscapingBefore,
     after: LandscapingAfter,
     beforeUrl: 'northmainlandscaping.com',
     afterUrl: 'northmainlandscaping.com/spring-cleanup',
-    beforeAnnotations: ['Too many services listed', 'No seasonal offer', 'Generic homepage copy', 'No quote flow', 'Phone buried in footer'],
-    afterAnnotations: ['Seasonal urgency messaging', 'One focused offer', 'Package clearly defined', 'Quote request prominent', 'Social proof near CTA'],
+    beforeTags: ['16-service text wall', 'No seasonal offer', 'No photo proof', 'Contact buried', 'Weak CTA'],
+    afterTags: ['Seasonal focus', 'Package clearly defined', 'Before/after photos', 'Quote CTA prominent', 'Social proof included'],
     wrong: [
-      'Homepage lists 20 services in a text blob with no visual priority',
-      'No seasonal messaging — same page in March as in October',
-      'Contact is phone-only, buried at the bottom',
-      'No explanation of what a cleanup actually includes',
-      'No before/after proof or reviews visible',
+      'Homepage lists 16 services in a single paragraph with no visual hierarchy',
+      'No seasonal messaging — identical in March and October',
+      'No photos showing actual completed work',
+      '"View Our Services" CTA leads to a list page, not a quote',
+      'Contact details only in footer — no quick path to request a quote',
     ],
     changed: [
-      '"Limited spots left" headline creates real seasonal urgency',
-      'Single service focus: spring cleanup package, not 20 services',
-      'Package clearly shows exactly what is included for one price',
-      'Quote request button appears in the nav and hero',
-      'Customer review directly below the offer builds trust fast',
+      'Seasonal headline creates real urgency for spring cleanup specifically',
+      'Package checklist shows exactly what is included so customers can decide quickly',
+      'Before/after photo section shows the transformation customers are buying',
+      '"Request Spring Cleanup Quote" button repeats throughout the page',
+      'Review quote from a local customer near the quote button',
     ],
-    why: 'In spring, most landscaping searches are looking for one specific thing: someone to come handle the yard before summer. A seasonal page that names exactly what is included, shows availability pressure, and makes requesting a quote easy will out-convert a generic services homepage every time.',
+    why: 'In spring, most landscaping searches are looking for a single specific service. A seasonal page that names what is included, shows before/after proof, and makes requesting a quote simple wins more business than a generic all-services homepage.',
   },
   {
     num: '03',
-    category: 'Med Spa / Aesthetics',
+    category: 'Med Spa & Aesthetics',
     business: 'Glow House Aesthetics',
     before: MedSpaBefore,
     after: MedSpaAfter,
     beforeUrl: 'glowhouse-aesthetics.com',
     afterUrl: 'glowhouse-aesthetics.com/first-visit',
-    beforeAnnotations: ['12 treatments, no path', 'Booking info buried in footer', 'No first-timer guidance', 'Inconsistent visual style', 'No provider trust signals'],
-    afterAnnotations: ['First-visit framing reduces anxiety', 'Consultation CTA above fold', 'Step-by-step process shown', 'Provider credentials visible', 'No pressure positioning'],
+    beforeTags: ['16 treatments no path', 'Booking buried in footer', 'No provider info', 'No first-timer guidance', 'Inconsistent branding'],
+    afterTags: ['First-visit framing', 'Consultation CTA above fold', 'Provider credentials shown', 'Step-by-step process', 'Premium, clean aesthetic'],
     wrong: [
-      'Treatment menu leads with 12 options — overwhelming for first-timers',
-      'Booking requires calling during business hours — too much friction',
+      '16 treatments listed in a grid with no guidance for first-time patients',
+      'Booking requires calling or emailing during business hours — too much friction',
+      'No provider name, credentials, or photo to build personal trust',
       'No explanation of what to expect at a first appointment',
-      'No provider credentials or photos to build personal trust',
-      'Visual style feels inconsistent and slightly dated',
+      'Inconsistent pink branding feels low-budget despite a premium service',
     ],
     changed: [
-      '"First visit? Start here" framing immediately speaks to new patients',
-      'Consultation button appears in the nav and hero — no hunting required',
-      'Three-step walkthrough removes uncertainty about the first visit',
-      'Provider name, credentials, and experience shown before the CTA',
-      'Clean, minimal aesthetic feels premium without being cold',
+      '"First visit? Start here." immediately speaks to new patients who need context',
+      'Booking button appears in nav, hero, and as a full-width button — no hunting',
+      'Provider photo, name, and credentials appear before the CTA',
+      'Three-step walkthrough removes first-visit anxiety',
+      'Deep plum palette and clean layout signal premium without feeling cold',
     ],
-    why: 'First-time med spa patients often spend weeks researching before booking. The thing that tips them is trust — do they feel like they know who they are seeing and what will happen? A consultation-first page that answers those questions before anyone has to ask converts far better than a treatment menu.',
+    why: 'First-time med spa patients research for weeks before booking. What tips them is trust — do they feel like they know who they are seeing and what will happen? A consultation-first page that answers those questions converts far better than a treatment menu.',
   },
 ];
 
 const improvements = [
   'Clearer service offers',
   'Stronger calls to action',
-  'Mobile-friendly layout',
+  'Mobile-first layout',
   'Better trust signals',
-  'Cleaner visual hierarchy',
-  'Service-specific landing pages',
+  'Real photo proof',
+  'Service-specific pages',
   'Simpler quote request flow',
-  'Seasonal and local messaging',
+  'Local, seasonal messaging',
 ];
 
 // ─── Main page ────────────────────────────────────────────────────────────────
@@ -452,7 +553,6 @@ export default function Portfolio() {
             type="button"
             onClick={() => setLocation('/')}
             className="font-display font-bold text-xl tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-            data-testid="portfolio-logo"
           >
             Prairecraft
           </button>
@@ -460,7 +560,6 @@ export default function Portfolio() {
             type="button"
             onClick={() => setLocation('/')}
             className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-            data-testid="portfolio-back"
           >
             <ArrowLeft size={15} />
             Back to main site
@@ -471,34 +570,18 @@ export default function Portfolio() {
       {/* Hero */}
       <section className="pt-14 pb-12 md:pt-20 md:pb-16 px-4 md:px-6 border-b border-border/50">
         <div className="container mx-auto max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-md uppercase tracking-wider border border-amber-200 mb-6">
-            Sample refreshes &bull; Not real client work
-          </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 leading-tight">
-            Concept refreshes that show what better can look like.
+            Website refreshes for local service businesses.
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-            I'm building a portfolio of sample website transformations to show how I help local service businesses turn outdated websites into cleaner, clearer, more effective sales tools.
-          </p>
-          <p className="text-sm text-muted-foreground/70 border-l-2 border-border pl-4 italic">
-            These are not real client projects. They are concept examples designed to show how a stronger website can improve trust, clarity, and quote requests.
-          </p>
-        </div>
-      </section>
-
-      {/* What these show */}
-      <section className="py-12 md:py-16 px-4 md:px-6 bg-secondary/30 border-b border-border/50">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-2xl font-display font-bold mb-4">What these examples are meant to show</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            A lot of local service businesses already do great work. Their websites just don't always reflect it. These concept refreshes show the kinds of improvements I focus on: clearer messaging, stronger calls to action, better mobile layout, more trust signals, and simpler paths to request a quote or book a consultation.
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Three examples of what a more focused, conversion-ready website looks like — and what made the original version fall short.
           </p>
         </div>
       </section>
 
       {/* Before / After examples */}
       <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-6xl space-y-24">
+        <div className="container mx-auto max-w-6xl space-y-28">
           {examples.map((ex, idx) => {
             const BeforeComp = ex.before;
             const AfterComp = ex.after;
@@ -508,21 +591,18 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.55 }}
+                transition={{ duration: 0.5 }}
               >
-                {/* Section label */}
+                {/* Label row */}
                 <div className="flex items-center gap-4 mb-8">
-                  <span className="text-4xl font-display font-bold text-border">0{idx + 1}</span>
+                  <span className="text-5xl font-display font-bold text-border select-none">0{idx + 1}</span>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{ex.category}</p>
                     <h2 className="text-2xl font-display font-bold">{ex.business}</h2>
                   </div>
-                  <span className="ml-auto text-xs bg-secondary border border-border text-muted-foreground font-semibold px-3 py-1 rounded-full hidden sm:inline">
-                    Concept Refresh {ex.num}
-                  </span>
                 </div>
 
-                {/* Side-by-side browser mockups */}
+                {/* Side-by-side mockups */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   {/* Before */}
                   <div>
@@ -531,14 +611,11 @@ export default function Portfolio() {
                         <X size={11} /> Before
                       </span>
                     </div>
-                    <BrowserWindow url={ex.beforeUrl} className="ring-2 ring-red-100">
+                    <BrowserWindow url={ex.beforeUrl}>
                       <BeforeComp />
                     </BrowserWindow>
-                    {/* Before annotations */}
                     <div className="flex flex-wrap gap-1.5 mt-3">
-                      {ex.beforeAnnotations.map((a, i) => (
-                        <Annotation key={i} label={a} variant="bad" />
-                      ))}
+                      {ex.beforeTags.map((t, i) => <Tag key={i} label={t} bad />)}
                     </div>
                   </div>
 
@@ -549,20 +626,17 @@ export default function Portfolio() {
                         <CheckCircle2 size={11} /> After
                       </span>
                     </div>
-                    <BrowserWindow url={ex.afterUrl} className="ring-2 ring-green-100">
+                    <BrowserWindow url={ex.afterUrl}>
                       <AfterComp />
                     </BrowserWindow>
-                    {/* After annotations */}
                     <div className="flex flex-wrap gap-1.5 mt-3">
-                      {ex.afterAnnotations.map((a, i) => (
-                        <Annotation key={i} label={a} variant="good" />
-                      ))}
+                      {ex.afterTags.map((t, i) => <Tag key={i} label={t} />)}
                     </div>
                   </div>
                 </div>
 
                 {/* Breakdown */}
-                <div className="grid md:grid-cols-3 gap-5 bg-secondary/30 rounded-2xl border border-border/60 p-6">
+                <div className="grid md:grid-cols-3 gap-6 bg-secondary/40 rounded-2xl border border-border/60 p-6">
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider text-destructive mb-3 flex items-center gap-1.5">
                       <X size={13} /> What was wrong
@@ -600,12 +674,12 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* What I'm usually improving */}
+      {/* What I usually improve */}
       <section className="py-16 md:py-20 px-4 md:px-6 bg-secondary/30 border-y border-border/50">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-display font-bold mb-3">What I'm usually improving</h2>
-            <p className="text-muted-foreground">The same handful of problems show up on most local service sites.</p>
+            <p className="text-muted-foreground">The same problems show up on most local service sites.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {improvements.map((item, i) => (
@@ -632,7 +706,7 @@ export default function Portfolio() {
             Want this kind of thinking applied to your website?
           </h2>
           <p className="text-primary-foreground/70 text-lg mb-8 leading-relaxed">
-            If your business already does solid work but your website feels dated, cluttered, or unclear, I can help. Send me your site and I'll review it through the lens of trust, clarity, mobile experience, and lead generation.
+            If your business does solid work but your website feels dated, unclear, or hard to navigate, send it over. I'll review it through the lens of trust, clarity, mobile experience, and lead generation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -640,7 +714,6 @@ export default function Portfolio() {
               size="lg"
               className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90 text-base h-12 font-semibold"
               onClick={() => { setLocation('/'); setTimeout(() => scrollTo('free-teardown'), 100); }}
-              data-testid="portfolio-cta-teardown"
             >
               Get a free website teardown
               <ArrowRight size={16} className="ml-2" />
@@ -651,7 +724,6 @@ export default function Portfolio() {
               variant="outline"
               className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-base h-12"
               onClick={() => setLocation('/')}
-              data-testid="portfolio-cta-home"
             >
               Back to main site
             </Button>
@@ -663,11 +735,7 @@ export default function Portfolio() {
       <footer className="py-8 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Prairecraft. All rights reserved.</p>
-          <a
-            href="mailto:hello@prairecraft.com"
-            className="hover:text-foreground transition-colors"
-            data-testid="portfolio-email"
-          >
+          <a href="mailto:hello@prairecraft.com" className="hover:text-foreground transition-colors">
             hello@prairecraft.com
           </a>
         </div>
