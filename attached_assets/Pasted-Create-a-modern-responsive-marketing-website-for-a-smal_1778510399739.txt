@@ -1,0 +1,378 @@
+Create a modern, responsive marketing website for a small local web design and lead-generation studio serving service-based businesses in Bloomington-Normal, Illinois.
+
+Business concept:
+This is a lean local studio that helps service businesses turn outdated websites into clean, mobile-friendly sales pages that generate more quote requests. The offer is not a fancy agency retainer or bloated branding process. It is practical, fast, sharp, and outcome-focused: clearer offers, better design, stronger calls to action, and easier quote requests.
+
+Possible business name:
+Site Sprint Studio
+
+Use the name “Site Sprint Studio” throughout the site for now. The site should feel professional, local, trustworthy, sharp, and slightly scrappy in a good way. It should appeal to local contractors, home service companies, med spas, landscapers, roofers, remodelers, junk removal companies, dog groomers, auto shops, and similar businesses.
+
+Primary positioning:
+Websites that help local service businesses get more quote requests.
+
+Secondary positioning:
+I build clean, mobile-friendly websites and landing pages for Bloomington-Normal service businesses. No bloated agency process. Just sharper design, clearer offers, and easier ways for customers to contact you.
+
+Primary CTA:
+Get a free website teardown
+
+Secondary CTA:
+See example refreshes
+
+Main conversion goal:
+Get visitors to submit a form requesting a free website teardown.
+
+Tech requirements:
+Build a polished, responsive website using React.
+Use clean component structure.
+Use Tailwind CSS for styling.
+The site should be fast, mobile-friendly, and easy to edit.
+Do not use placeholder lorem ipsum.
+Use real, polished copy throughout.
+Create a single-page landing page experience with anchor navigation.
+Include a working-looking contact/teardown form. It does not need backend functionality yet, but structure it clearly so it can later be connected to email, Airtable, Formspree, Resend, or another form handler.
+Use semantic HTML where appropriate.
+Make the design feel premium but not corporate.
+Avoid generic SaaS gradients that feel overused.
+Avoid cheesy icons and stock-photo-heavy layouts.
+Use tasteful layout, spacing, cards, subtle borders, and strong typography.
+Make it feel like a smart local studio, not a massive agency.
+
+Visual style:
+Clean, modern, editorial, and practical.
+Use a light background with strong contrast.
+Use warm off-white or very light neutral backgrounds.
+Use dark charcoal text.
+Use one strong accent color, maybe electric blue, deep green, or warm orange.
+Use simple geometric design elements, subtle grid lines, small badges, and before/after style cards.
+Make it feel useful and confident, not flashy.
+Use rounded corners, soft shadows, clear section hierarchy, and generous spacing.
+Typography should feel modern and strong.
+Headlines should be bold and clear.
+Body copy should be readable and not too small.
+The design should look good on desktop and mobile.
+
+Site sections:
+
+Header / Navigation
+Include:
+Logo text: Site Sprint Studio
+Navigation links:
+How it works
+Packages
+Examples
+Who it’s for
+FAQ
+CTA button: Free teardown
+
+Header should be sticky or cleanly positioned at top.
+On mobile, use a simple responsive menu or stack gracefully.
+
+Hero section
+Headline:
+Turn your outdated website into a simple sales machine.
+
+Subheadline:
+I help Bloomington-Normal service businesses refresh their websites, clarify their offers, and make it easier for customers to request a quote.
+
+Supporting microcopy:
+Built for contractors, clinics, landscapers, remodelers, junk removal companies, groomers, auto shops, and local service businesses that need their website to work harder.
+
+Primary button:
+Get a free website teardown
+
+Secondary button:
+View packages
+
+Include a small trust-style badge or note:
+Local to Bloomington-Normal
+Fast website sprints
+No bloated agency process
+
+Add a visual element in the hero:
+A stylized website audit card or mock dashboard showing:
+Current site issues
+Mobile clarity
+Quote flow
+Local SEO basics
+Conversion opportunities
+
+Make it feel like the website is diagnosing and improving local business websites.
+
+Problem section
+Section headline:
+Your website might be quietly losing good leads.
+
+Copy:
+Most people do not need to be convinced that your business exists. They already heard about you, found you on Google, saw your truck, or got your name from a friend. Then they visit your website and decide whether you feel trustworthy enough to contact.
+
+Create a grid of problem cards:
+Dated mobile experience
+Services are hard to understand
+No clear quote request path
+Weak photos or buried proof
+Homepage talks too much about the business, not the customer
+Google traffic lands on pages that do not sell
+
+Solution section
+Section headline:
+Sharper pages. Clearer offers. More quote requests.
+
+Copy:
+Site Sprint Studio helps local service businesses clean up the online moments that happen right before someone calls, books, or requests an estimate.
+
+Create 3 feature cards:
+Website Refreshes
+For businesses with outdated websites that need clearer structure, better design, and stronger calls to action.
+
+Landing Pages
+For seasonal offers, specific services, paid ads, local SEO pages, or quick campaign tests.
+
+Growth Support
+For businesses that want ongoing updates, service pages, Google Business Profile support, and light reporting.
+
+Who it’s for section
+Section headline:
+Built for Bloomington-Normal service businesses.
+
+Create a clean list or card grid of industries:
+Roofing & exteriors
+Home remodeling
+Landscaping & hardscaping
+Junk removal & cleanouts
+Med spas & aesthetics
+Dog grooming & boarding
+Auto repair
+Cleaning services
+Fence & deck repair
+Senior services & estate cleanout
+
+Add supporting copy:
+The best fit is a business that already does good work, already has customers, but has a website that does not match the quality of the service.
+
+Packages section
+Section headline:
+Simple packages. Clear scope.
+
+Create 4 pricing cards.
+
+Package 1:
+Starter Landing Page
+Price:
+$750-$1,500
+Description:
+Best for testing one service, seasonal offer, or campaign.
+Includes:
+One custom landing page
+Copy refresh
+Mobile-friendly design
+Contact form
+Basic SEO setup
+Simple analytics
+
+Package 2:
+Core Website Refresh
+Price:
+$3,000
+Description:
+Best for businesses that need a cleaner, sharper website.
+Includes:
+5-page website
+Homepage
+Services page
+About page
+Contact page
+One service or location page
+Visual polish
+Quote/contact flow
+Basic SEO setup
+Analytics/Search Console setup
+
+Package 3:
+Growth Support
+Price:
+$500/month
+Description:
+Best after the site is live and needs consistent improvement.
+Includes:
+Hosting/support
+Monthly site updates
+Google Business Profile post support
+One new service or SEO page per month
+Basic reporting
+Light copy/content refresh
+
+Package 4:
+Premium Growth
+Price:
+$1,000-$1,500/month
+Description:
+Best for businesses that want ongoing lead generation support.
+Includes:
+Everything in Growth
+Landing page testing
+Review generation flow
+Quarterly photo/video content session
+Local SEO buildout
+Email or SMS campaign support
+
+Make the Core Website Refresh card visually highlighted as the most popular or recommended option.
+
+Example refreshes section
+Section headline:
+Example refresh concepts
+
+Important:
+These should be clearly labeled as concept examples, not real clients.
+
+Create 3 example cards:
+Storm Damage Roofing Page
+A landing page concept for roofers and exterior contractors who want more inspection requests after storms.
+
+Spring Cleanup Landscaping Page
+A seasonal service page concept for landscapers who want to capture spring cleanup, mulch, trimming, and yard refresh work.
+
+First Visit Med Spa Page
+A polished consultation page concept for med spas that want to make first-time customers feel informed and comfortable.
+
+Each card should include:
+Problem
+Page idea
+Primary CTA
+Best for
+
+Example:
+Problem: Visitors do not know where to start.
+Page idea: A focused inspection page with trust signals, service area, FAQs, and a clear request form.
+CTA: Request an inspection
+Best for: Roofing, siding, windows, exterior repair
+
+How it works section
+Section headline:
+A simple sprint process.
+
+Create 4 steps:
+
+Free teardown
+I review your current site and identify the biggest missed opportunities.
+Rough direction
+We choose the highest-value path: landing page, homepage refresh, or full website sprint.
+Build sprint
+I write, design, and build the page or site with a clear quote/contact flow.
+Launch and improve
+We connect forms, analytics, and optional monthly support so the site keeps getting better.
+Free teardown CTA section
+Create a strong callout section with a form.
+
+Headline:
+Want to see what your website could be doing better?
+
+Copy:
+Send over your current site and I’ll review it through the lens of trust, clarity, mobile experience, and quote requests. You’ll get practical notes whether we work together or not.
+
+Form fields:
+Name
+Business name
+Website URL
+Email
+What service do you want more leads for?
+Optional message
+
+Submit button:
+Request my free teardown
+
+Add reassurance:
+No pressure. No giant sales deck. Just a practical review of what could be improved.
+
+FAQ section
+Include these FAQs:
+
+Q: Do you only work with Bloomington-Normal businesses?
+A: Bloomington-Normal is the focus, but I can work with nearby Central Illinois businesses too.
+
+Q: What kind of businesses are the best fit?
+A: Local service businesses where each new customer has real value: contractors, remodelers, med spas, landscapers, auto shops, cleaning companies, groomers, and similar businesses.
+
+Q: Do I need a full rebrand?
+A: Usually not. Most businesses need clearer messaging, better structure, sharper visuals, and a stronger quote path before they need a full brand overhaul.
+
+Q: How fast can a site be built?
+A: Most landing pages can be built quickly once the offer and content are clear. Full website refreshes are usually handled as focused sprints.
+
+Q: Can you host and maintain the site?
+A: Yes. Monthly support options are available for hosting, updates, new pages, Google Business Profile support, and reporting.
+
+Q: Do you guarantee leads?
+A: No one can honestly guarantee leads from a website alone. The goal is to improve the parts we can control: clarity, trust, mobile experience, offer structure, search basics, and conversion paths.
+
+Footer
+Include:
+Site Sprint Studio
+Websites and landing pages for Bloomington-Normal service businesses.
+Links:
+How it works
+Packages
+Examples
+Free teardown
+Email placeholder:
+hello@sitesprintstudio.com
+
+Add a small note:
+Built locally in Central Illinois.
+
+Copy style rules:
+Write in a clear, direct, human tone.
+Avoid buzzwords like “unlock,” “leverage,” “disrupt,” “synergy,” and “game-changing.”
+Avoid saying “it’s not just X, it’s Y.”
+Avoid em dashes.
+Avoid overused agency language.
+Avoid sounding like a generic SaaS landing page.
+The voice should feel smart, trustworthy, practical, and a little punchy.
+
+Design details:
+Use section spacing that feels polished.
+Use cards for packages and examples.
+Use subtle hover states on buttons and cards.
+Use a strong CTA color.
+Use responsive layouts:
+Desktop: multi-column cards where appropriate.
+Mobile: stacked cards with generous spacing.
+Make buttons obvious and accessible.
+Ensure all text has strong contrast.
+Use simple decorative elements like small badges, line accents, grid backgrounds, or abstract browser-window shapes.
+Do not add unnecessary animation unless it is subtle and tasteful.
+
+Implementation notes:
+Create reusable components:
+Header
+Hero
+ProblemCards
+SolutionCards
+IndustryGrid
+PricingCards
+ExampleRefreshes
+ProcessSteps
+TeardownForm
+FAQ
+Footer
+
+Use dummy form submission behavior:
+When the form submits, prevent default and show a simple success message:
+“Thanks. I’ll review your site and follow up soon.”
+
+Include comments in the code where I would later connect the form to a real backend or form service.
+
+Final output:
+Build the full website.
+Make sure it runs without errors.
+Make sure it is visually polished on desktop and mobile.
+Make sure all navigation anchor links work.
+Make sure the form has basic validation.
+Use real copy, not placeholder text.
+
+Optional extra instruction for Replit if you want it to be more visually interesting:
+
+Add a “Before / After” visual section showing a generic outdated local business website transformed into a clearer sales page. Do not use a real business name. Use fake example names like “Prairie Ridge Exteriors” or “North Main Landscaping.” Show before problems like “No clear CTA,” “Buried services,” and “Weak mobile layout,” then show after improvements like “Quote request above the fold,” “Service-specific pages,” and “Trust signals near CTA.”
+
+Make this feel like a practical, conversion-focused local business website, not a portfolio site for a designer. The visitor should understand within 5 seconds what the business does, who it helps, and what to do next.

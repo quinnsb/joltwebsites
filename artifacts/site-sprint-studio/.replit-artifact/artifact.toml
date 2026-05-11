@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Site Sprint Studio"
+version = "1.0.0"
+id = "artifacts/site-sprint-studio"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22668
+
+[services.development]
+run = "pnpm --filter @workspace/site-sprint-studio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/site-sprint-studio", "run", "build" ]
+publicDir = "artifacts/site-sprint-studio/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22668"
+BASE_PATH = "/"
