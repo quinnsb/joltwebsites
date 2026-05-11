@@ -196,7 +196,7 @@ export function TeardownForm() {
                     className="w-full h-12 text-base mt-1"
                     data-testid="button-submit-teardown"
                   >
-                    Request my free teardown
+                    Request my free site review
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     Takes 2 minutes. No pressure. No giant sales deck.

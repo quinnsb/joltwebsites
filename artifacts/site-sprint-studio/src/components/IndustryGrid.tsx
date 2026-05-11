@@ -28,13 +28,13 @@ export function IndustryGrid() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-5 leading-tight">
-              Built for Bloomington-Normal service businesses.
+              Built for service businesses where every lead matters.
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              The best fit is a business that already does good work, already has customers, but has a website that doesn't match the quality of the service.
+              Jolt is best for businesses that already do good work, already have customers, but have a website that does not match the quality of the service.
             </p>
             <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-              If a potential customer looks you up after getting your name from a neighbor, do they feel confident enough to contact you? That's the question Prairecraft helps you answer with a clear yes.
+              If a potential customer looks you up after getting your name from a neighbor, they should quickly understand what you do, why they can trust you, and how to contact you.
             </p>
             <Button
               type="button"

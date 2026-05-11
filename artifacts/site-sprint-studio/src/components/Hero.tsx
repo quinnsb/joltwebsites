@@ -6,7 +6,6 @@ import { scrollTo } from '@/lib/scrollTo';
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-6 overflow-hidden">
-      {/* Dot-grid background texture */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.035]"
@@ -24,14 +23,14 @@ export function Hero() {
           className="max-w-2xl"
         >
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-primary/20">
-            Bloomington-Normal, IL
+            Central Illinois
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight mb-6">
             Turn your outdated website into a simple sales machine.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
-            I help Bloomington-Normal service businesses refresh their websites, clarify their offers, and make it easier for customers to request a quote.
+            Jolt helps service businesses refresh their websites, clarify their offers, and make it easier for customers to request a quote.
           </p>
           <p className="text-sm text-muted-foreground/80 mb-8 border-l-2 border-primary/40 pl-4 py-1 italic">
             Built for contractors, clinics, landscapers, remodelers, junk removal companies, groomers, auto shops, and local service businesses that need their website to work harder.
@@ -62,7 +61,7 @@ export function Hero() {
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle2 size={15} className="text-primary" />
-              <span>Bloomington-Normal based</span>
+              <span>Central Illinois based</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock size={15} className="text-primary" />
@@ -96,7 +95,7 @@ export function Hero() {
               </div>
               <div className="text-right">
                 <div className="text-2xl font-bold text-destructive font-display">C&minus;</div>
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">Before Prairecraft</div>
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">Before Jolt</div>
               </div>
             </div>
 

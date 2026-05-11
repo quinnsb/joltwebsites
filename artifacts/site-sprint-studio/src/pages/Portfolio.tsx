@@ -3,9 +3,21 @@ import { ArrowLeft, ArrowRight, X, CheckCircle2, Star, Phone } from 'lucide-reac
 import { useLocation } from 'wouter';
 import { scrollTo } from '@/lib/scrollTo';
 import { Button } from '@/components/ui/button';
-import heartlandLogo from '@assets/15be93e9-6ef3-451a-a24a-5a4ab9cfdb70_1778513300396.png';
-import northMainLogo from '@assets/ChatGPT_Image_May_11,_2026,_10_27_43_AM_1778513300397.png';
-import glowHouseLogo from '@assets/ChatGPT_Image_May_11,_2026,_10_27_28_AM_1778513300397.png';
+import { BrandMark } from '@/components/BrandMark';
+import heartlandLogo from '@assets/heartland-logo-transparent.png';
+import northMainLogo from '@assets/north-main-logo-transparent.png';
+import glowHouseLogo from '@assets/glow-house-logo-transparent.png';
+
+const stockImages = {
+  roofingHero:
+    'https://images.unsplash.com/photo-1681049400158-0ff6249ac315?auto=format&fit=crop&crop=entropy&w=900&h=420&q=80',
+  roofingProject:
+    'https://images.unsplash.com/photo-1726589004565-bedfba94d3a2?auto=format&fit=crop&crop=entropy&w=420&h=240&q=80',
+  landscapingHero:
+    'https://images.unsplash.com/photo-1762461838534-ca26dfa134a8?auto=format&fit=crop&crop=entropy&w=900&h=420&q=80',
+  medSpaHero:
+    'https://images.unsplash.com/photo-1757689373248-a6cd07328ba5?auto=format&fit=crop&crop=entropy&w=900&h=420&q=80',
+} as const;
 
 // ─── Browser chrome wrapper ───────────────────────────────────────────────────
 
@@ -48,14 +60,19 @@ function Photo({
   label,
   className = '',
   overlay = 'bg-black/0',
+  src,
 }: {
   gradient: string;
   label?: string;
   className?: string;
   overlay?: string;
+  src?: string;
 }) {
   return (
-    <div className={`relative overflow-hidden ${gradient} ${className}`}>
+    <div
+      className={`relative overflow-hidden bg-cover bg-center ${gradient} ${className}`}
+      style={src ? { backgroundImage: `url("${src}")` } : undefined}
+    >
       <div className={`absolute inset-0 ${overlay}`} />
       {label && (
         <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[6px] px-1.5 py-0.5 truncate">
@@ -126,7 +143,12 @@ function RoofingAfter() {
     <div className="bg-white font-sans" style={{ fontSize: 11 }}>
       {/* Nav — clean navy brand */}
       <div className="bg-[#1B3A6B] px-3 py-2.5 flex items-center justify-between">
-        <img src={heartlandLogo} alt="Heartland Roofing" className="h-6 brightness-0 invert" />
+        <img
+          src={heartlandLogo}
+          alt="Heartland Roofing"
+          className="h-9 w-[126px] object-contain object-left"
+          style={{ filter: 'invert(1)' }}
+        />
         <div className="flex items-center gap-3">
           <span className="text-[8px] text-blue-200">Storm Damage</span>
           <span className="text-[8px] text-blue-200">Services</span>
@@ -140,8 +162,9 @@ function RoofingAfter() {
       <div className="relative">
         <Photo
           gradient="bg-gradient-to-r from-[#0F2340] via-[#1B3A6B] to-[#0F2340]"
-          overlay="bg-gradient-to-r from-black/60 to-black/20"
+          overlay="bg-gradient-to-r from-[#071424]/75 via-[#1B3A6B]/55 to-black/20"
           className="h-[130px]"
+          src={stockImages.roofingHero}
         />
         <div className="absolute inset-0 flex flex-col justify-center px-4 py-3">
           <div className="bg-[#D46000] text-white text-[7px] font-bold px-2 py-0.5 rounded w-fit mb-2 uppercase tracking-wider">
@@ -174,9 +197,9 @@ function RoofingAfter() {
       <div className="px-3 pt-3 pb-1">
         <div className="text-[7.5px] font-bold text-gray-700 uppercase tracking-wider mb-1.5">Recent Projects</div>
         <div className="grid grid-cols-3 gap-1.5">
-          <Photo gradient="bg-gradient-to-br from-slate-700 via-slate-600 to-zinc-500" label="Roof replacement · Normal IL" className="h-[52px] rounded" />
-          <Photo gradient="bg-gradient-to-br from-stone-600 via-stone-500 to-amber-800" label="Storm repair · Bloomington" className="h-[52px] rounded" />
-          <Photo gradient="bg-gradient-to-br from-zinc-600 via-neutral-600 to-slate-500" label="Siding + gutters · Lexington" className="h-[52px] rounded" />
+          <Photo gradient="bg-gradient-to-br from-slate-700 via-slate-600 to-zinc-500" label="Roof replacement · Normal IL" className="h-[52px] rounded" src={stockImages.roofingHero} overlay="bg-black/5" />
+          <Photo gradient="bg-gradient-to-br from-stone-600 via-stone-500 to-amber-800" label="Storm repair · Bloomington" className="h-[52px] rounded" src={stockImages.roofingProject} overlay="bg-black/5" />
+          <Photo gradient="bg-gradient-to-br from-zinc-600 via-neutral-600 to-slate-500" label="Siding + gutters · Lexington" className="h-[52px] rounded" src={stockImages.roofingHero} overlay="bg-[#1B3A6B]/15" />
         </div>
       </div>
       {/* Review */}
@@ -245,7 +268,14 @@ function LandscapingAfter() {
     <div className="bg-[#FAFAF5] font-sans" style={{ fontSize: 11 }}>
       {/* Nav — cream with dark green logo */}
       <div className="bg-[#FAFAF5] border-b border-[#D8E8C8] px-3 py-2.5 flex items-center justify-between">
-        <img src={northMainLogo} alt="North Main Landscaping" className="h-7" style={{ filter: 'brightness(0) saturate(100%) invert(24%) sepia(40%) saturate(600%) hue-rotate(80deg) brightness(85%)' }} />
+        <img
+          src={northMainLogo}
+          alt="North Main Landscaping"
+          className="h-10 w-[128px] object-contain object-left"
+          style={{
+            filter: 'brightness(0) saturate(100%) invert(24%) sepia(40%) saturate(600%) hue-rotate(80deg) brightness(85%)',
+          }}
+        />
         <div className="flex items-center gap-2.5">
           <span className="text-[7.5px] text-[#2d5a1b]">Services</span>
           <span className="text-[7.5px] text-[#2d5a1b]">Gallery</span>
@@ -259,8 +289,9 @@ function LandscapingAfter() {
       <div className="relative">
         <Photo
           gradient="bg-gradient-to-r from-[#0F2E0F] via-[#1C4A1C] to-[#264F1A]"
-          overlay="bg-gradient-to-r from-black/50 to-transparent"
+          overlay="bg-gradient-to-r from-[#0F2E0F]/75 via-[#1C4A1C]/45 to-transparent"
           className="h-[120px]"
+          src={stockImages.landscapingHero}
         />
         {/* Simulated lawn texture overlay */}
         <div className="absolute inset-0 opacity-30" style={{
@@ -302,6 +333,8 @@ function LandscapingAfter() {
               gradient="bg-gradient-to-br from-yellow-900 via-amber-800 to-yellow-700"
               label="Before — leaf-covered beds"
               className="h-[50px] rounded"
+              src={stockImages.landscapingHero}
+              overlay="bg-amber-950/35"
             />
           </div>
           <div>
@@ -309,6 +342,8 @@ function LandscapingAfter() {
               gradient="bg-gradient-to-br from-emerald-700 via-green-600 to-lime-700"
               label="After — mulched &amp; edged"
               className="h-[50px] rounded"
+              src={stockImages.landscapingHero}
+              overlay="bg-emerald-900/5"
             />
           </div>
         </div>
@@ -376,7 +411,14 @@ function MedSpaAfter() {
     <div className="bg-[#FAF7F4] font-sans" style={{ fontSize: 11 }}>
       {/* Nav — warm cream, elegant */}
       <div className="bg-[#FAF7F4] border-b border-[#E8D8CE] px-3 py-2.5 flex items-center justify-between">
-        <img src={glowHouseLogo} alt="Glow House Aesthetics" className="h-6" style={{ filter: 'brightness(0) saturate(100%) invert(12%) sepia(25%) saturate(400%) hue-rotate(290deg) brightness(80%)' }} />
+        <img
+          src={glowHouseLogo}
+          alt="Glow House Aesthetics"
+          className="h-8 w-[128px] object-contain object-left"
+          style={{
+            filter: 'brightness(0) saturate(100%) invert(12%) sepia(25%) saturate(400%) hue-rotate(290deg) brightness(80%)',
+          }}
+        />
         <div className="flex items-center gap-2.5">
           <span className="text-[7.5px] text-[#4A1C3A]">Treatments</span>
           <span className="text-[7.5px] text-[#4A1C3A]">Providers</span>
@@ -390,8 +432,9 @@ function MedSpaAfter() {
       <div className="relative">
         <Photo
           gradient="bg-gradient-to-r from-[#2E0A22] via-[#4A1C3A] to-[#6B2A52]"
-          overlay="bg-gradient-to-r from-black/40 to-transparent"
+          overlay="bg-gradient-to-r from-[#2E0A22]/85 via-[#4A1C3A]/50 to-transparent"
           className="h-[120px]"
+          src={stockImages.medSpaHero}
         />
         {/* Warm light simulation */}
         <div className="absolute inset-0 opacity-40" style={{
@@ -422,6 +465,8 @@ function MedSpaAfter() {
             <Photo
               gradient="bg-gradient-to-br from-[#D4B0A0] via-[#C8A090] to-[#B89080]"
               className="w-full h-full"
+              src={stockImages.medSpaHero}
+              overlay="bg-[#4A1C3A]/10"
             />
           </div>
           <div>
@@ -447,9 +492,9 @@ function MedSpaAfter() {
       <div className="px-3 pt-2.5 pb-2">
         <div className="text-[7.5px] font-bold text-[#4A1C3A] uppercase tracking-wider mb-1.5">Popular Treatments</div>
         <div className="grid grid-cols-3 gap-1.5">
-          <Photo gradient="bg-gradient-to-br from-rose-300 via-pink-200 to-rose-100" label="Botox &amp; Fillers" className="h-[44px] rounded" />
-          <Photo gradient="bg-gradient-to-br from-purple-400 via-violet-300 to-purple-200" label="Morpheus8" className="h-[44px] rounded" />
-          <Photo gradient="bg-gradient-to-br from-amber-200 via-orange-100 to-rose-100" label="HydraFacial" className="h-[44px] rounded" />
+          <Photo gradient="bg-gradient-to-br from-rose-300 via-pink-200 to-rose-100" label="Botox &amp; Fillers" className="h-[44px] rounded" src={stockImages.medSpaHero} overlay="bg-[#4A1C3A]/10" />
+          <Photo gradient="bg-gradient-to-br from-purple-400 via-violet-300 to-purple-200" label="Morpheus8" className="h-[44px] rounded" src={stockImages.medSpaHero} overlay="bg-[#4A1C3A]/25" />
+          <Photo gradient="bg-gradient-to-br from-amber-200 via-orange-100 to-rose-100" label="HydraFacial" className="h-[44px] rounded" src={stockImages.medSpaHero} overlay="bg-[#C8A882]/15" />
         </div>
       </div>
     </div>
@@ -563,9 +608,9 @@ export default function Portfolio() {
           <button
             type="button"
             onClick={() => setLocation('/')}
-            className="font-display font-bold text-xl tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
           >
-            Prairecraft
+            <BrandMark />
           </button>
           <button
             type="button"
@@ -578,12 +623,12 @@ export default function Portfolio() {
         </div>
       </header>
 
-      <section className="pt-14 pb-12 md:pt-20 md:pb-16 px-4 md:px-6 border-b border-border/50">
+      <section className="pt-14 pb-12 md:pt-20 md:pb-16 px-4 md:px-6 border-b-4 border-foreground bg-foreground text-background">
         <div className="container mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-display font-bold mb-4 leading-none">
             Website refreshes for local service businesses.
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-lg text-background/70 leading-relaxed">
             Three before-and-after examples showing what a more focused, conversion-ready website looks like — and what made the original fall short.
           </p>
         </div>
@@ -640,7 +685,7 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 bg-secondary/40 rounded-2xl border border-border/60 p-6">
+                <div className="grid md:grid-cols-3 gap-6 bg-card border-2 border-foreground shadow-[8px_8px_0_hsl(var(--foreground))] p-6">
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider text-destructive mb-3 flex items-center gap-1.5">
                       <X size={13} /> What was wrong
@@ -678,11 +723,11 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-secondary/30 border-y border-border/50">
+      <section className="py-16 md:py-20 px-4 md:px-6 bg-primary border-y-4 border-foreground">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-3">What I'm usually improving</h2>
-            <p className="text-muted-foreground">The same problems show up on most local service sites.</p>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-3 leading-none">What I'm usually improving</h2>
+            <p className="text-foreground/70">The same problems show up on most local service sites.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {improvements.map((item, i) => (
@@ -692,7 +737,7 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="bg-card border border-border rounded-xl p-4 shadow-sm flex items-start gap-3"
+                className="bg-card border-2 border-foreground p-4 shadow-[5px_5px_0_hsl(var(--foreground))] flex items-start gap-3"
               >
                 <CheckCircle2 size={16} className="text-primary shrink-0 mt-0.5" />
                 <span className="text-sm font-medium">{item}</span>
@@ -702,29 +747,29 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-foreground text-primary-foreground">
+      <section className="py-16 md:py-24 px-4 md:px-6 bg-foreground text-background border-y-4 border-primary">
         <div className="container mx-auto max-w-2xl text-center">
           <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
             Want this applied to your website?
           </h2>
-          <p className="text-primary-foreground/70 text-lg mb-8 leading-relaxed">
+          <p className="text-background/70 text-lg mb-8 leading-relaxed">
             If your business does solid work but your website feels dated, unclear, or hard to navigate, send it over. I'll review it through the lens of trust, clarity, mobile experience, and lead generation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               type="button"
               size="lg"
-              className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90 text-base h-12 font-semibold"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base h-12 font-semibold border-primary"
               onClick={() => { setLocation('/'); setTimeout(() => scrollTo('free-teardown'), 100); }}
             >
-              Get a free website teardown
+              Get a free site review
               <ArrowRight size={16} className="ml-2" />
             </Button>
             <Button
               type="button"
               size="lg"
               variant="outline"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-base h-12"
+              className="border-background/30 text-background hover:bg-background/10 text-base h-12"
               onClick={() => setLocation('/')}
             >
               Back to main site
@@ -735,9 +780,9 @@ export default function Portfolio() {
 
       <footer className="py-8 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Prairecraft. All rights reserved.</p>
-          <a href="mailto:hello@prairecraft.com" className="hover:text-foreground transition-colors">
-            hello@prairecraft.com
+          <p>&copy; {new Date().getFullYear()} Jolt. All rights reserved.</p>
+          <a href="mailto:hello@joltwebsites.com" className="hover:text-foreground transition-colors">
+            hello@joltwebsites.com
           </a>
         </div>
       </footer>

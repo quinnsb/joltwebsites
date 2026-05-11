@@ -1,5 +1,6 @@
 import { scrollTo } from '@/lib/scrollTo';
 import { useLocation } from 'wouter';
+import { BrandMark } from '@/components/BrandMark';
 
 export function Footer() {
   const [, setLocation] = useLocation();
@@ -9,9 +10,9 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 border-b border-background/10 pb-10">
           <div className="lg:col-span-2">
-            <h3 className="font-display font-bold text-2xl mb-3 text-primary-foreground">Prairecraft</h3>
+            <BrandMark inverted className="mb-4" />
             <p className="text-background/65 max-w-sm mb-5 text-sm leading-relaxed">
-              Websites and landing pages for Bloomington-Normal service businesses.
+              Websites and landing pages for local service businesses.
             </p>
             <p className="text-xs text-background/40">Built locally in Central Illinois.</p>
           </div>
@@ -52,19 +53,19 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-primary-foreground text-sm uppercase tracking-wider">Contact</h4>
             <a
-              href="mailto:hello@prairecraft.com"
+              href="mailto:hello@joltwebsites.com"
               className="text-background/65 hover:text-background transition-colors text-sm block mb-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/30 rounded"
               data-testid="footer-link-email"
             >
-              hello@prairecraft.com
+              hello@joltwebsites.com
             </a>
-            <p className="text-background/40 text-xs mt-4">Bloomington-Normal, IL</p>
+            <p className="text-background/40 text-xs mt-4">Central Illinois</p>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between text-xs text-background/30 gap-2">
-          <p>&copy; {new Date().getFullYear()} Prairecraft. All rights reserved.</p>
-          <p>prairecraft.com</p>
+          <p>&copy; {new Date().getFullYear()} Jolt. All rights reserved.</p>
+          <p>joltwebsites.com</p>
         </div>
       </div>
     </footer>

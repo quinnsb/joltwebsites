@@ -8,8 +8,8 @@ import {
 
 const faqs = [
   {
-    question: 'Do you only work with Bloomington-Normal businesses?',
-    answer: 'Bloomington-Normal is the focus, but I can work with nearby Central Illinois businesses too.',
+    question: 'Do you only work with Central Illinois businesses?',
+    answer: 'Central Illinois is the focus, but Jolt can work with service businesses outside the area too.',
   },
   {
     question: 'What kind of businesses are the best fit?',

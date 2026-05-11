@@ -31,7 +31,7 @@ const problems = [
   {
     icon: <SearchX className="h-6 w-6" />,
     title: 'Your Google clicks go nowhere',
-    description: 'If someone searches "roof repair Bloomington" and lands on a generic homepage, they have to work too hard to contact you.'
+    description: 'If someone searches "roof repair near me" and lands on a generic homepage, they have to work too hard to contact you.'
   }
 ];
 

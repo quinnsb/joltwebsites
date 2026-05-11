@@ -1,8 +1,8 @@
-# Prairecraft
+# Jolt
 
-A single-page marketing website for Prairecraft — a lean local web design and lead-generation studio based in Bloomington-Normal, Illinois. Helps service businesses turn outdated websites into clean, mobile-friendly sales pages that get more quote requests.
+A single-page marketing website for Jolt — a punchy local web design and lead-generation studio. Helps service businesses turn outdated websites into sharp, conversion-ready sales pages that get more quote requests.
 
-Live URL: prairecraft.com
+Live URL: joltwebsites.com
 
 ## Run & Operate
 
@@ -48,7 +48,7 @@ artifacts/site-sprint-studio/src/
 **To change the business name:**
 - `src/components/Header.tsx` — logo text
 - `src/components/Footer.tsx` — footer name and email
-- `src/components/SolutionCards.tsx` — "Prairecraft helps local…" body copy
+- `src/components/SolutionCards.tsx` — "Jolt helps local…" body copy
 - `src/pages/Portfolio.tsx` — header, footer, meta text
 
 **To change pricing:**
@@ -62,8 +62,9 @@ artifacts/site-sprint-studio/src/
 
 **To change colors:**
 - `src/index.css` → `:root` block
-- Primary accent (forest green): `--primary: 144 61% 26%`
-- Background (warm off-white): `--background: 40 18% 97%`
+- Primary accent (electric cyan): `--primary: 188 94% 43%`
+- Supporting accents: olive `--secondary`, coral `--destructive`, pink `--accent`
+- Background (warm off-white): `--background: 42 24% 94%`
 - Text (dark charcoal): `--foreground: 0 0% 10%`
 
 **To change fonts:**
@@ -97,11 +98,11 @@ artifacts/site-sprint-studio/src/
 
 ## User preferences
 
-- Business name: Prairecraft (URL: prairecraft.com)
-- Email: hello@prairecraft.com
-- Location: Bloomington-Normal, Illinois
-- Accent color: forest green (#1a6b3a), kept as primary
-- Tone: practical, local, trustworthy, slightly punchy — no agency buzzwords
-- Typography direction: bold, editorial (Barlow Condensed for display), inspired by Jolt branding screenshot
-- Background: warm parchment `hsl(38 22% 95%)`, foreground: warm near-black `hsl(38 12% 9%)`
+- Business name: Jolt (URL: joltwebsites.com)
+- Email: hello@joltwebsites.com
+- Location: Central Illinois
+- Accent colors: electric cyan, olive, coral, and pink inspired by the Jolt reference board
+- Tone: practical, local, trustworthy, energetic — no agency buzzwords
+- Typography direction: bold, editorial (Barlow Condensed for display), directly inspired by the Jolt visual system
+- Background: warm off-white and dark charcoal with hard-edged color bands and graphic shadows
 - Portfolio logos: attached_assets/ — Heartland Roofing, North Main Landscaping, Glow House Aesthetics

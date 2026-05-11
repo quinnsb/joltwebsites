@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { scrollTo } from '@/lib/scrollTo';
 import { useLocation } from 'wouter';
+import { BrandMark } from '@/components/BrandMark';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,13 +44,13 @@ export function Header() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <button
-          className="font-display font-bold text-xl tracking-tight cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+          className="cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           onClick={handleLogoClick}
           data-testid="link-logo"
           type="button"
-          aria-label="Prairecraft home"
+          aria-label="Jolt home"
         >
-          Prairecraft
+          <BrandMark />
         </button>
 
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Main navigation">

@@ -78,8 +78,8 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 38 22% 95%;        /* warm parchment — extracted from Jolt cream panels */
-  --foreground: 38 12% 9%;         /* warm near-black — Jolt's dark sections */
+  --background: 38 22% 95%;
+  --foreground: 38 12% 9%;
   --border: 36 12% 80%;
   --card: 38 20% 98%;
   --card-foreground: 38 12% 9%;
@@ -95,7 +95,7 @@
   --popover: 38 20% 98%;
   --popover-foreground: 38 12% 9%;
   --popover-border: 36 12% 86%;
-  --primary: 144 58% 24%;          /* forest green — kept, now used more boldly */
+  --primary: 144 58% 24%;
   --primary-foreground: 0 0% 100%;
   --secondary: 38 14% 88%;
   --secondary-foreground: 38 12% 9%;
@@ -113,7 +113,6 @@
   --chart-4: 38 6% 60%;
   --chart-5: 38 4% 80%;
 
-  /* Jolt-inspired: Barlow Condensed for bold editorial display text */
   --app-font-sans: 'DM Sans', sans-serif;
   --app-font-display: 'Barlow Condensed', sans-serif;
   --app-font-serif: Georgia, serif;
@@ -207,13 +206,48 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  /* Barlow Condensed headlines feel tighter — tighten tracking */
   h1, h2, h3, .font-display {
     letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
+  .jolt-mark {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 0.42rem);
+    grid-auto-rows: 0.18rem;
+    gap: 0.16rem;
+    transform: skewX(-18deg);
+  }
+
+  .jolt-mark span {
+    display: block;
+    width: 0.82rem;
+    height: 0.18rem;
+    background: currentColor;
+  }
+
+  .jolt-mark span:nth-child(1) { grid-column: 3; }
+  .jolt-mark span:nth-child(2) { grid-column: 2; }
+  .jolt-mark span:nth-child(3) { grid-column: 1; }
+  .jolt-mark span:nth-child(4) { grid-column: 3; }
+  .jolt-mark span:nth-child(5) { grid-column: 2; }
+  .jolt-mark span:nth-child(6) { grid-column: 1; }
+  .jolt-mark-standard { color: hsl(var(--primary)); }
+  .jolt-mark-inverted { color: hsl(var(--primary)); }
+
+  .jolt-stripe-field {
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 12px, rgba(22, 191, 219, 0.55) 12px 15px),
+      repeating-linear-gradient(90deg, transparent 0 28px, rgba(255, 91, 61, 0.28) 28px 31px);
+  }
+
+  .jolt-copy-card {
+    background:
+      linear-gradient(90deg, hsl(var(--accent)) 0 52%, hsl(var(--primary)) 52% 100%);
+    box-shadow: 8px 10px 0 hsl(var(--foreground));
+  }
+
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
   }
