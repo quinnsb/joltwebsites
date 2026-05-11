@@ -1,0 +1,215 @@
+Fake “before” on the left
+Improved “after” on the right
+Short explanation underneath about what changed and why
+
+That lets people instantly understand your value without needing actual case studies yet.
+
+Here’s a strong prompt you can paste into Replit, Claude, or whatever you’re using to build the site:
+
+Create a portfolio/examples page for my website studio, Site Sprint Studio.
+
+Context:
+This business helps Bloomington-Normal service businesses turn outdated websites into clean, mobile-friendly sales pages that generate more quote requests. I do website refreshes, landing pages, and light local SEO setup for service-based businesses like roofers, landscapers, remodelers, med spas, junk removal companies, dog groomers, and similar local businesses.
+
+Goal of this page:
+I do not have real client case studies yet, so I want this page to showcase concept refreshes. The page should visually demonstrate how I think and what kind of improvements I make. The goal is to help a local business owner immediately understand what I do and imagine what I could do for their business.
+
+Important:
+These are not real client projects. They should be clearly labeled as “Concept Refreshes” or “Sample Website Refreshes.”
+Do not present them as actual client work.
+The page should feel honest, polished, and strategically useful.
+
+Main idea for the page:
+Show 3 before-and-after website concepts.
+
+For each example:
+On the left, show a fake “before” website that looks dated, cluttered, unclear, or under-optimized.
+On the right, show the improved “after” version that looks cleaner, more modern, more trustworthy, and more conversion-focused.
+
+Each pair should feel like a side-by-side transformation.
+The contrast should be obvious and visually satisfying.
+
+Use 3 fake businesses in 3 different service categories:
+
+Roofing / Exteriors
+Fake business name example: Prairie Ridge Exteriors
+Landscaping / Outdoor Services
+Fake business name example: North Main Landscaping
+Med Spa / Aesthetics
+Fake business name example: Glow House Aesthetics
+
+Page structure:
+
+Hero section
+Headline:
+Concept refreshes that show what better can look like.
+
+Subheadline:
+I’m currently showcasing sample website transformations to demonstrate how I help local service businesses turn outdated websites into cleaner, clearer, more effective sales tools.
+
+Supporting text:
+These are not real client projects. They are concept examples designed to show how a stronger website can improve trust, clarity, and quote requests.
+
+CTA button:
+Request a free website teardown
+
+Intro / explanation section
+Headline:
+What these examples are meant to show
+
+Copy:
+A lot of local service businesses already do great work. Their websites just do not always reflect it. These concept refreshes show the kinds of improvements I focus on: clearer messaging, stronger calls to action, better mobile layout, more trust signals, and simpler paths to request a quote or book a consultation.
+
+Before and after examples section
+Create 3 large example blocks.
+
+Each block should include:
+A label like “Concept Refresh 01”
+Business category
+Fake business name
+A side-by-side visual comparison
+
+Left side:
+“Before”
+A fake outdated homepage mockup with:
+Weak headline
+Cluttered navigation
+Generic stock-photo look
+Hard-to-find CTA
+Too much text
+Poor hierarchy
+Dated visual style
+Weak trust signals
+
+Right side:
+“After”
+A refreshed homepage or landing page mockup with:
+Clear headline
+Better service clarity
+Prominent CTA
+Stronger hierarchy
+More polished design
+Better spacing
+Trust signals near CTA
+Cleaner mobile-friendly layout
+More confidence and professionalism
+
+Under each side-by-side comparison, include a short breakdown with these fields:
+
+What was wrong
+List 3-5 specific problems with the original
+
+What changed
+List 3-5 specific improvements in the redesign
+
+Why it matters
+A short paragraph explaining how the redesign could help improve trust, clarity, and conversions
+
+The 3 examples should be:
+
+Example 1
+Category: Roofing / Exteriors
+Fake business: Prairie Ridge Exteriors
+Before problems:
+No clear quote CTA
+Buried services
+Feels dated
+No storm-damage-specific page
+Weak trust signals
+After direction:
+Focused storm damage inspection page
+Strong “Request a Free Inspection” CTA
+Service area section
+Reviews/testimonials
+Simple process section
+Better visual proof
+
+Example 2
+Category: Landscaping / Outdoor Services
+Fake business: North Main Landscaping
+Before problems:
+Homepage too generic
+Too many services stacked together
+No clear seasonal offer
+Weak before-and-after proof
+No easy quote flow
+After direction:
+Focused spring cleanup landing page
+Clear service packages
+Before-and-after gallery
+Simple quote request form
+Seasonal messaging
+Neighborhood trust feel
+
+Example 3
+Category: Med Spa / Aesthetics
+Fake business: Glow House Aesthetics
+Before problems:
+Looks visually inconsistent
+Too many treatments with no path
+Weak first-time visitor guidance
+No consultation-focused CTA
+Low trust and polish
+After direction:
+Focused first-visit consultation page
+Clear “Book a Consultation” CTA
+Treatment overview
+What to expect section
+Provider trust signals
+Cleaner premium aesthetic
+
+Summary section
+Headline:
+What I’m usually improving
+
+Create a card grid with improvements like:
+Clearer offers
+Stronger calls to action
+Mobile-friendly structure
+Better trust signals
+Cleaner visual hierarchy
+Service-specific landing pages
+Better contact and quote flow
+Sharper overall presentation
+
+CTA section
+Headline:
+Want this kind of thinking applied to your website?
+
+Copy:
+If your business already does solid work but your website feels dated, cluttered, or unclear, I can help. Send me your site and I’ll review it through the lens of trust, clarity, mobile experience, and lead generation.
+
+CTA button:
+Get a free website teardown
+
+Design direction:
+Make the page feel polished, editorial, and strategic.
+The before versions should look intentionally weaker, but still believable.
+The after versions should look clean, modern, and much more effective.
+Do not make the before versions comically bad. They should feel like realistic small-business websites.
+Use cards, browser-window mockups, shadows, and labels like “Before” and “After.”
+Make the visual transformation the main event.
+Use responsive design so the comparisons stack nicely on mobile.
+On desktop, the side-by-side effect should be very strong.
+
+Extra UI details:
+Add small annotations or callout labels on the before and after mockups, such as:
+“No clear CTA”
+“Services buried”
+“Weak hierarchy”
+“Strong quote path”
+“Trust signals added”
+“Mobile clarity improved”
+
+Tone:
+Practical, smart, honest, helpful.
+Do not oversell.
+Do not pretend these are real case studies.
+This should feel like a useful showcase of design thinking and conversion strategy.
+
+Technical request:
+Build this as a dedicated portfolio/examples page.
+Use reusable components for each before-after example.
+Make the layout visually strong and easy to scan.
+Use high-quality fake mockups rather than plain text boxes.
+Make sure the page feels like a real portfolio page, even though the projects are conceptual.
