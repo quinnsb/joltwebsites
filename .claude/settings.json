@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"/Users/quinnbrewer/Documents/VIBE CODING/Modern-Marketing-Site/.claude/worktrees/stoic-lehmann-0d3230\" && git add -A && git diff --cached --quiet || git commit -m \"Auto-save changes\" && git push origin HEAD 2>/dev/null || true",
+            "statusMessage": "Pushing changes to GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
