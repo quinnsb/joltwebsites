@@ -31,7 +31,6 @@ export function Header() {
     { label: 'How it Works', id: 'how-it-works' },
     { label: 'Packages', id: 'packages' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Examples', id: 'examples' },
     { label: "Who It's For", id: 'who-its-for' },
     { label: 'FAQ', id: 'faq' },
   ];

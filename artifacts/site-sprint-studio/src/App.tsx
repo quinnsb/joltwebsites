@@ -11,7 +11,7 @@ import { ProblemCards } from "@/components/ProblemCards";
 import { SolutionCards } from "@/components/SolutionCards";
 import { IndustryGrid } from "@/components/IndustryGrid";
 import { PricingCards } from "@/components/PricingCards";
-import { ExampleRefreshes } from "@/components/ExampleRefreshes";
+import { PortfolioBanner } from "@/components/PortfolioBanner";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { TeardownForm } from "@/components/TeardownForm";
 import { FAQ } from "@/components/FAQ";
@@ -25,11 +25,11 @@ function Home() {
       <Header />
       <main className="flex-grow">
         <Hero />
+        <PortfolioBanner />
         <ProblemCards />
         <SolutionCards />
         <IndustryGrid />
         <PricingCards />
-        <ExampleRefreshes />
         <ProcessSteps />
         <TeardownForm />
         <FAQ />
