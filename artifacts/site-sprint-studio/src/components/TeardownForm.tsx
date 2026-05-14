@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle2, Clock, Shield } from 'lucide-react';
+import { CalendarDays, CheckCircle2, Clock, Mail, Shield } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name is required'),
@@ -20,8 +20,19 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const contactSchema = z.object({
+  contactName: z.string().min(2, 'Name is required'),
+  contactBusinessName: z.string().min(2, 'Business name is required'),
+  contactEmail: z.string().email('Must be a valid email address'),
+  contactMessage: z.string().min(10, 'Please share a little context'),
+});
+
+type ContactValues = z.infer<typeof contactSchema>;
+
 export function TeardownForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isContactSubmitted, setIsContactSubmitted] = useState(false);
+  const [mode, setMode] = useState<'teardown' | 'contact'>('teardown');
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -35,6 +46,16 @@ export function TeardownForm() {
     },
   });
 
+  const contactForm = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      contactName: '',
+      contactBusinessName: '',
+      contactEmail: '',
+      contactMessage: '',
+    },
+  });
+
   function onSubmit(_values: FormValues) {
     // TODO: Connect to a form handler — Formspree, Resend, Airtable, or similar.
     // Example with Formspree:
@@ -44,6 +65,11 @@ export function TeardownForm() {
     //     body: JSON.stringify(_values),
     //   });
     setIsSubmitted(true);
+  }
+
+  function onContactSubmit(_values: ContactValues) {
+    // TODO: Connect to the same form handler as the teardown request.
+    setIsContactSubmitted(true);
   }
 
   return (
@@ -78,6 +104,26 @@ export function TeardownForm() {
                 <p className="text-sm text-muted-foreground">Takes 2 minutes to submit. I'll follow up within a few days.</p>
               </div>
             </div>
+
+            <div className="mt-8 rounded-xl border border-border bg-card p-5">
+              <div className="flex items-start gap-3">
+                <CalendarDays size={19} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <h3 className="font-display text-xl font-bold mb-1">Want to talk first?</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    If you are not ready for a teardown and just want to ask a question or talk through fit, send a short note instead.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMode('contact')}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                  >
+                    Open the contact form
+                    <Mail size={15} />
+                  </button>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -87,7 +133,28 @@ export function TeardownForm() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="bg-card border-l-4 border-l-primary border border-border shadow-lg rounded-2xl p-6 md:p-8"
           >
-            {isSubmitted ? (
+            <div className="grid grid-cols-2 gap-2 rounded-lg bg-secondary p-1 mb-6">
+              <button
+                type="button"
+                onClick={() => setMode('teardown')}
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
+                  mode === 'teardown' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Free teardown
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode('contact')}
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
+                  mode === 'contact' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Talk first
+              </button>
+            </div>
+
+            {mode === 'teardown' && isSubmitted ? (
               <div className="text-center py-10">
                 <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-5">
                   <CheckCircle2 size={28} />
@@ -97,7 +164,7 @@ export function TeardownForm() {
                   Thanks. I'll review your site and follow up soon.
                 </p>
               </div>
-            ) : (
+            ) : mode === 'teardown' ? (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -200,6 +267,94 @@ export function TeardownForm() {
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     Takes 2 minutes. No pressure. No giant sales deck.
+                  </p>
+                </form>
+              </Form>
+            ) : isContactSubmitted ? (
+              <div className="text-center py-10">
+                <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-5">
+                  <CheckCircle2 size={28} />
+                </div>
+                <h3 className="text-xl font-bold font-display mb-2">Message Received</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Thanks. I'll read this and follow up soon.
+                </p>
+              </div>
+            ) : (
+              <Form {...contactForm}>
+                <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      control={contactForm.control}
+                      name="contactName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Your Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Jane Smith" {...field} data-testid="input-contact-name" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={contactForm.control}
+                      name="contactBusinessName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Business Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Smith Roofing" {...field} data-testid="input-contact-business-name" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={contactForm.control}
+                    name="contactEmail"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl>
+                          <Input placeholder="jane@smithroofing.com" {...field} data-testid="input-contact-email" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={contactForm.control}
+                    name="contactMessage"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>What would you like to talk about?</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="I want to talk through whether Jolt is a fit, timing, packages, or a specific website issue..."
+                            className="resize-none"
+                            rows={5}
+                            {...field}
+                            data-testid="input-contact-message"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button
+                    type="submit"
+                    className="w-full h-12 text-base mt-1"
+                    data-testid="button-submit-contact"
+                  >
+                    Send a note
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Good for questions, fit checks, and meeting requests.
                   </p>
                 </form>
               </Form>

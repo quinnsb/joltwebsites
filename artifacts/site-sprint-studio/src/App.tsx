@@ -4,6 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Portfolio from "@/pages/Portfolio";
+import { SeoLandingPage } from "@/pages/SeoLandingPage";
+import { seoPages } from "@/data/seoPages";
 
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -18,6 +20,7 @@ import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 
 const queryClient = new QueryClient();
+const seoRoutes = [...seoPages].sort((a, b) => b.slug.length - a.slug.length);
 
 function Home() {
   return (
@@ -44,6 +47,11 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/portfolio" component={Portfolio} />
+      {seoRoutes.map((page) => (
+        <Route key={page.slug} path={page.slug}>
+          <SeoLandingPage page={page} />
+        </Route>
+      ))}
       <Route component={NotFound} />
     </Switch>
   );

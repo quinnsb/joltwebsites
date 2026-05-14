@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, X, CheckCircle2, Star, Phone, Expand } from 'lucide-react';
+import { ArrowRight, X, CheckCircle2, Star, Phone, Expand } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { scrollTo } from '@/lib/scrollTo';
 import { Button } from '@/components/ui/button';
-import { BrandMark } from '@/components/BrandMark';
+import { Header } from '@/components/Header';
+import { TeardownForm } from '@/components/TeardownForm';
 import heartlandLogo from '@assets/heartland-logo-transparent.png';
 import northMainLogo from '@assets/north-main-logo-transparent.png';
 import glowHouseLogo from '@assets/glow-house-logo-transparent.png';
@@ -22,7 +23,17 @@ const stockImages = {
 
 // ─── Browser chrome wrapper ───────────────────────────────────────────────────
 
-function BrowserWindow({ url, children, scale = 1 }: { url: string; children: React.ReactNode; scale?: number }) {
+function BrowserWindow({
+  url,
+  children,
+  scale = 1,
+  bodyClassName = 'h-[420px]',
+}: {
+  url: string;
+  children: React.ReactNode;
+  scale?: number;
+  bodyClassName?: string;
+}) {
   return (
     <div className="rounded-xl overflow-hidden border border-border shadow-xl flex flex-col">
       <div className="flex items-center gap-2 px-3 py-2.5 bg-gray-100 border-b border-gray-200 shrink-0">
@@ -35,7 +46,7 @@ function BrowserWindow({ url, children, scale = 1 }: { url: string; children: Re
           {url}
         </div>
       </div>
-      <div style={{ height: scale === 1 ? 420 : undefined }} className={scale !== 1 ? 'flex-1' : 'h-[420px]'}>
+      <div className={bodyClassName}>
         <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left', width: `${100 / scale}%` }}>
           {children}
         </div>
@@ -44,101 +55,82 @@ function BrowserWindow({ url, children, scale = 1 }: { url: string; children: Re
   );
 }
 
-// ─── Lightbox ─────────────────────────────────────────────────────────────────
-
-function Lightbox({
-  open,
-  onClose,
-  before,
+function InlinePreview({
   after,
-  beforeUrl,
   afterUrl,
+  before,
+  beforeUrl,
   business,
+  onClose,
 }: {
-  open: boolean;
-  onClose: () => void;
-  before: React.ComponentType;
   after: React.ComponentType;
-  beforeUrl: string;
   afterUrl: string;
+  before: React.ComponentType;
+  beforeUrl: string;
   business: string;
+  onClose: () => void;
 }) {
-  const [tab, setTab] = useState<'before' | 'after'>('before');
+  const [tab, setTab] = useState<'before' | 'after'>('after');
   const BeforeComp = before;
   const AfterComp = after;
 
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    document.addEventListener('keydown', handler);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handler);
-      document.body.style.overflow = '';
-    };
-  }, [open, onClose]);
-
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      className="mt-5 rounded-2xl border border-border bg-card shadow-lg overflow-hidden"
+    >
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between px-4 py-3 border-b border-border bg-background">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-sm font-semibold text-foreground">{business}</span>
+          <div className="flex rounded-lg border border-border overflow-hidden text-xs font-semibold">
+            <button
+              type="button"
+              onClick={() => setTab('before')}
+              className={`px-3 py-1.5 transition-colors ${tab === 'before' ? 'bg-red-100 text-red-700' : 'text-muted-foreground hover:bg-secondary'}`}
+            >
+              Before
+            </button>
+            <button
+              type="button"
+              onClick={() => setTab('after')}
+              className={`px-3 py-1.5 transition-colors ${tab === 'after' ? 'bg-green-100 text-green-700' : 'text-muted-foreground hover:bg-secondary'}`}
+            >
+              After
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
           onClick={onClose}
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 8 }}
-            transition={{ duration: 0.2 }}
-            className="bg-background rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Lightbox header */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-border shrink-0">
-              <div className="flex items-center gap-3">
-                <span className="text-sm font-semibold text-foreground">{business}</span>
-                <div className="flex rounded-lg border border-border overflow-hidden text-xs font-semibold">
-                  <button
-                    type="button"
-                    onClick={() => setTab('before')}
-                    className={`px-3 py-1.5 transition-colors ${tab === 'before' ? 'bg-red-100 text-red-700' : 'text-muted-foreground hover:bg-secondary'}`}
-                  >
-                    Before
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTab('after')}
-                    className={`px-3 py-1.5 transition-colors ${tab === 'after' ? 'bg-green-100 text-green-700' : 'text-muted-foreground hover:bg-secondary'}`}
-                  >
-                    After
-                  </button>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={onClose}
-                className="p-1.5 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
-              >
-                <X size={18} />
-              </button>
-            </div>
+          Close preview
+          <X size={16} />
+        </button>
+      </div>
 
-            {/* Scrollable preview */}
-            <div className="flex-1 overflow-y-auto">
-              <div className="p-5">
-                <BrowserWindow url={tab === 'before' ? beforeUrl : afterUrl} scale={1.5}>
-                  {tab === 'before' ? <BeforeComp /> : <AfterComp />}
-                </BrowserWindow>
-              </div>
+      <div className="p-4 bg-muted/20">
+        <div className="rounded-2xl border border-border bg-white shadow-sm overflow-hidden">
+          <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-border bg-background/80">
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Embedded page preview
+              </p>
+              <p className="text-sm font-medium text-foreground truncate">{tab === 'before' ? beforeUrl : afterUrl}</p>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <span className="text-xs text-muted-foreground whitespace-nowrap">Scroll inside this page</span>
+          </div>
+          <div className="h-[72vh] overflow-y-auto bg-white">
+            <div className="min-h-full">
+              {tab === 'before' ? <BeforeComp /> : <AfterComp />}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -533,50 +525,18 @@ const examples = [
 
 export default function Portfolio() {
   const [, setLocation] = useLocation();
-  const [lightbox, setLightbox] = useState<null | { idx: number }>(null);
+  const [expandedIdx, setExpandedIdx] = useState<null | number>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const activeLightbox = lightbox !== null ? examples[lightbox.idx] : null;
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
 
-      {activeLightbox && (
-        <Lightbox
-          open
-          onClose={() => setLightbox(null)}
-          before={activeLightbox.before}
-          after={activeLightbox.after}
-          beforeUrl={activeLightbox.beforeUrl}
-          afterUrl={activeLightbox.afterUrl}
-          business={activeLightbox.business}
-        />
-      )}
+      <Header />
 
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <button
-            type="button"
-            onClick={() => setLocation('/')}
-            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-          >
-            <BrandMark />
-          </button>
-          <button
-            type="button"
-            onClick={() => setLocation('/')}
-            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-          >
-            <ArrowLeft size={15} />
-            Back to main site
-          </button>
-        </div>
-      </header>
-
-      <section className="pt-14 pb-12 md:pt-20 md:pb-16 px-4 md:px-6 border-b-4 border-foreground bg-foreground text-background">
+      <section className="pt-32 pb-12 md:pt-40 md:pb-16 px-4 md:px-6 border-b-4 border-foreground bg-foreground text-background">
         <div className="container mx-auto max-w-3xl">
           <h1 className="text-5xl md:text-7xl font-display font-bold mb-4 leading-none">
             Website refreshes for local service businesses.
@@ -616,10 +576,10 @@ export default function Portfolio() {
                       </span>
                       <button
                         type="button"
-                        onClick={() => setLightbox({ idx })}
+                        onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
                         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        <Expand size={13} /> Expand
+                        <Expand size={13} /> {expandedIdx === idx ? 'Close preview' : 'Expand'}
                       </button>
                     </div>
                     <BrowserWindow url={ex.beforeUrl}>
@@ -635,13 +595,6 @@ export default function Portfolio() {
                       <span className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 border border-green-200 text-xs font-bold px-3 py-1 rounded-full">
                         <CheckCircle2 size={11} /> After
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => setLightbox({ idx })}
-                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <Expand size={13} /> Expand
-                      </button>
                     </div>
                     <BrowserWindow url={ex.afterUrl}>
                       <AfterComp />
@@ -651,6 +604,19 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </div>
+
+                <AnimatePresence>
+                  {expandedIdx === idx && (
+                    <InlinePreview
+                      after={AfterComp}
+                      afterUrl={ex.afterUrl}
+                      before={BeforeComp}
+                      beforeUrl={ex.beforeUrl}
+                      business={ex.business}
+                      onClose={() => setExpandedIdx(null)}
+                    />
+                  )}
+                </AnimatePresence>
 
                 <div className="grid md:grid-cols-3 gap-6 bg-card border-2 border-foreground shadow-[8px_8px_0_hsl(var(--foreground))] p-6">
                   <div>
@@ -720,6 +686,8 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      <TeardownForm />
 
       <footer className="py-8 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
