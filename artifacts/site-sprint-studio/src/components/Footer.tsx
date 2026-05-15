@@ -18,7 +18,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-primary-foreground text-sm uppercase tracking-wider">Navigate</h4>
+            <h4 className="font-bold mb-4 text-[#f4cf30] text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3">
               {[
                 { label: 'How it Works', id: 'how-it-works' },
@@ -51,7 +51,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-primary-foreground text-sm uppercase tracking-wider">Contact</h4>
+            <h4 className="font-bold mb-4 text-[#f4cf30] text-sm uppercase tracking-wider">Contact</h4>
             <a
               href="mailto:hello@joltwebsites.com"
               className="text-background/65 hover:text-background transition-colors text-sm block mb-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/30 rounded"

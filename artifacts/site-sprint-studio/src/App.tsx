@@ -7,39 +7,13 @@ import Portfolio from "@/pages/Portfolio";
 import { SeoLandingPage } from "@/pages/SeoLandingPage";
 import { seoPages } from "@/data/seoPages";
 
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { ProblemCards } from "@/components/ProblemCards";
-import { SolutionCards } from "@/components/SolutionCards";
-import { IndustryGrid } from "@/components/IndustryGrid";
-import { PricingCards } from "@/components/PricingCards";
-import { PortfolioBanner } from "@/components/PortfolioBanner";
-import { ProcessSteps } from "@/components/ProcessSteps";
-import { TeardownForm } from "@/components/TeardownForm";
-import { FAQ } from "@/components/FAQ";
-import { Footer } from "@/components/Footer";
+import { HomeLanding } from "@/components/HomeLanding";
 
 const queryClient = new QueryClient();
 const seoRoutes = [...seoPages].sort((a, b) => b.slug.length - a.slug.length);
 
 function Home() {
-  return (
-    <div className="min-h-[100dvh] flex flex-col font-sans text-foreground bg-background">
-      <Header />
-      <main className="flex-grow">
-        <Hero />
-        <PortfolioBanner />
-        <ProblemCards />
-        <SolutionCards />
-        <IndustryGrid />
-        <PricingCards />
-        <ProcessSteps />
-        <TeardownForm />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <HomeLanding />;
 }
 
 function Router() {

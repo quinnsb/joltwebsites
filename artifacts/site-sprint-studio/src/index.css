@@ -87,27 +87,27 @@
   --sidebar: 38 18% 93%;
   --sidebar-foreground: 38 12% 9%;
   --sidebar-border: 36 12% 80%;
-  --sidebar-primary: 144 58% 24%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-primary: 48 89% 57%;
+  --sidebar-primary-foreground: 38 12% 9%;
   --sidebar-accent: 38 14% 88%;
   --sidebar-accent-foreground: 38 12% 9%;
   --sidebar-ring: 144 58% 24%;
   --popover: 38 20% 98%;
   --popover-foreground: 38 12% 9%;
   --popover-border: 36 12% 86%;
-  --primary: 144 58% 24%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 48 89% 57%;
+  --primary-foreground: 38 12% 9%;
   --secondary: 38 14% 88%;
   --secondary-foreground: 38 12% 9%;
   --muted: 38 12% 91%;
   --muted-foreground: 38 8% 40%;
-  --accent: 144 45% 92%;
-  --accent-foreground: 144 58% 24%;
+  --accent: 48 85% 88%;
+  --accent-foreground: 38 12% 9%;
   --destructive: 2 80% 55%;
   --destructive-foreground: 0 0% 100%;
   --input: 38 10% 78%;
-  --ring: 144 58% 24%;
-  --chart-1: 144 58% 24%;
+  --ring: 38 12% 9%;
+  --chart-1: 48 89% 57%;
   --chart-2: 38 12% 20%;
   --chart-3: 38 8% 40%;
   --chart-4: 38 6% 60%;
@@ -161,27 +161,27 @@
   --sidebar: 38 18% 93%;
   --sidebar-foreground: 38 12% 9%;
   --sidebar-border: 36 12% 80%;
-  --sidebar-primary: 144 58% 24%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-primary: 48 89% 57%;
+  --sidebar-primary-foreground: 38 12% 9%;
   --sidebar-accent: 38 14% 88%;
   --sidebar-accent-foreground: 38 12% 9%;
   --sidebar-ring: 144 58% 24%;
   --popover: 38 20% 98%;
   --popover-foreground: 38 12% 9%;
   --popover-border: 36 12% 86%;
-  --primary: 144 58% 24%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 48 89% 57%;
+  --primary-foreground: 38 12% 9%;
   --secondary: 38 14% 88%;
   --secondary-foreground: 38 12% 9%;
   --muted: 38 12% 91%;
   --muted-foreground: 38 8% 40%;
-  --accent: 144 45% 92%;
-  --accent-foreground: 144 58% 24%;
+  --accent: 48 85% 88%;
+  --accent-foreground: 38 12% 9%;
   --destructive: 2 80% 55%;
   --destructive-foreground: 0 0% 100%;
   --input: 38 10% 78%;
-  --ring: 144 58% 24%;
-  --chart-1: 144 58% 24%;
+  --ring: 38 12% 9%;
+  --chart-1: 48 89% 57%;
   --chart-2: 38 12% 20%;
   --chart-3: 38 8% 40%;
   --chart-4: 38 6% 60%;
@@ -202,8 +202,20 @@
     @apply border-border;
   }
 
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  html {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, .font-display {
@@ -233,8 +245,8 @@
   .jolt-mark span:nth-child(4) { grid-column: 3; }
   .jolt-mark span:nth-child(5) { grid-column: 2; }
   .jolt-mark span:nth-child(6) { grid-column: 1; }
-  .jolt-mark-standard { color: hsl(var(--primary)); }
-  .jolt-mark-inverted { color: hsl(var(--primary)); }
+  .jolt-mark-standard { color: #17130b; }
+  .jolt-mark-inverted { color: #f4cf30; }
 
   .jolt-stripe-field {
     background-image:

@@ -57,7 +57,7 @@ export function TeardownForm() {
   });
 
   function onSubmit(_values: FormValues) {
-    // TODO: Connect to a form handler — Formspree, Resend, Airtable, or similar.
+    // TODO: Connect to a form handler such as Formspree, Resend, Airtable, or similar.
     // Example with Formspree:
     //   fetch('https://formspree.io/f/YOUR_FORM_ID', {
     //     method: 'POST',
@@ -73,9 +73,9 @@ export function TeardownForm() {
   }
 
   return (
-    <section id="free-teardown" className="py-20 md:py-32">
+    <section id="free-teardown" className="border-y-2 border-[#17130b] bg-[#17130b] py-16 text-white md:py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid lg:grid-cols-2 gap-14 items-start max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -83,40 +83,44 @@ export function TeardownForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-5 leading-tight">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f4cf30] px-3 py-1 text-xs font-bold uppercase text-[#17130b]">
+              <CheckCircle2 size={13} />
+              Low pressure next step
+            </p>
+            <h2 className="mb-5 font-display text-3xl font-bold leading-[0.98] md:text-5xl">
               Get a free review of your website.
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Send me your current site. I'll look at it from the perspective of a customer trying to contact you — and share what's working, what's not, and what to fix first.
+            <p className="mb-8 text-lg leading-relaxed text-white/65">
+              Send me your current site. I'll look at it from the perspective of a customer trying to contact you, then share what's working, what's not, and what to fix first.
             </p>
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="text-sm text-muted-foreground">You'll get a practical written review, not a sales deck.</p>
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#f4cf30]" />
+                <p className="text-sm text-white/70">You'll get a practical written review, not a sales deck.</p>
               </div>
               <div className="flex items-start gap-3">
-                <Shield size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="text-sm text-muted-foreground">Useful whether we work together or not.</p>
+                <Shield size={18} className="mt-0.5 shrink-0 text-[#f4cf30]" />
+                <p className="text-sm text-white/70">Useful whether we work together or not.</p>
               </div>
               <div className="flex items-start gap-3">
-                <Clock size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="text-sm text-muted-foreground">Takes 2 minutes to submit. I'll follow up within a few days.</p>
+                <Clock size={18} className="mt-0.5 shrink-0 text-[#f4cf30]" />
+                <p className="text-sm text-white/70">Takes 2 minutes to submit. I'll follow up within a few days.</p>
               </div>
             </div>
 
-            <div className="mt-8 rounded-xl border border-border bg-card p-5">
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
               <div className="flex items-start gap-3">
-                <CalendarDays size={19} className="text-primary mt-0.5 shrink-0" />
+                <CalendarDays size={19} className="mt-0.5 shrink-0 text-[#f4cf30]" />
                 <div>
                   <h3 className="font-display text-xl font-bold mb-1">Want to talk first?</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                  <p className="mb-3 text-sm leading-relaxed text-white/65">
                     If you are not ready for a teardown and just want to ask a question or talk through fit, send a short note instead.
                   </p>
                   <button
                     type="button"
                     onClick={() => setMode('contact')}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#f4cf30] transition-colors hover:text-white"
                   >
                     Open the contact form
                     <Mail size={15} />
@@ -131,14 +135,14 @@ export function TeardownForm() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="bg-card border-l-4 border-l-primary border border-border shadow-lg rounded-2xl p-6 md:p-8"
+            className="rounded-2xl border-2 border-[#17130b] bg-[#f7f0df] p-5 text-[#17130b] shadow-[12px_12px_0_#f4cf30] md:p-8"
           >
-            <div className="grid grid-cols-2 gap-2 rounded-lg bg-secondary p-1 mb-6">
+            <div className="mb-6 grid grid-cols-2 gap-2 rounded-xl border-2 border-[#17130b] bg-[#17130b] p-1">
               <button
                 type="button"
                 onClick={() => setMode('teardown')}
-                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
-                  mode === 'teardown' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                className={`rounded-lg px-3 py-2 text-sm font-bold transition-colors ${
+                  mode === 'teardown' ? 'bg-[#f4cf30] text-[#17130b]' : 'text-white/70 hover:text-white'
                 }`}
               >
                 Free teardown
@@ -146,8 +150,8 @@ export function TeardownForm() {
               <button
                 type="button"
                 onClick={() => setMode('contact')}
-                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
-                  mode === 'contact' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                className={`rounded-lg px-3 py-2 text-sm font-bold transition-colors ${
+                  mode === 'contact' ? 'bg-[#f4cf30] text-[#17130b]' : 'text-white/70 hover:text-white'
                 }`}
               >
                 Talk first
@@ -156,18 +160,18 @@ export function TeardownForm() {
 
             {mode === 'teardown' && isSubmitted ? (
               <div className="text-center py-10">
-                <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-5">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#f4cf30] text-[#17130b]">
                   <CheckCircle2 size={28} />
                 </div>
                 <h3 className="text-xl font-bold font-display mb-2">Request Received</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-[#5f5748]">
                   Thanks. I'll review your site and follow up soon.
                 </p>
               </div>
             ) : mode === 'teardown' ? (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <FormField
                       control={form.control}
                       name="name"
@@ -260,30 +264,30 @@ export function TeardownForm() {
 
                   <Button
                     type="submit"
-                    className="w-full h-12 text-base mt-1"
+                    className="mt-1 h-12 w-full rounded-lg border-2 border-[#17130b] bg-[#f4cf30] text-base font-bold text-[#17130b] shadow-[4px_4px_0_#17130b]"
                     data-testid="button-submit-teardown"
                   >
                     Request my free site review
                   </Button>
-                  <p className="text-xs text-muted-foreground text-center">
+                  <p className="text-center text-xs text-[#6d6352]">
                     Takes 2 minutes. No pressure. No giant sales deck.
                   </p>
                 </form>
               </Form>
             ) : isContactSubmitted ? (
               <div className="text-center py-10">
-                <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-5">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#f4cf30] text-[#17130b]">
                   <CheckCircle2 size={28} />
                 </div>
                 <h3 className="text-xl font-bold font-display mb-2">Message Received</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-[#5f5748]">
                   Thanks. I'll read this and follow up soon.
                 </p>
               </div>
             ) : (
               <Form {...contactForm}>
                 <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <FormField
                       control={contactForm.control}
                       name="contactName"
@@ -348,12 +352,12 @@ export function TeardownForm() {
 
                   <Button
                     type="submit"
-                    className="w-full h-12 text-base mt-1"
+                    className="mt-1 h-12 w-full rounded-lg border-2 border-[#17130b] bg-[#f4cf30] text-base font-bold text-[#17130b] shadow-[4px_4px_0_#17130b]"
                     data-testid="button-submit-contact"
                   >
                     Send a note
                   </Button>
-                  <p className="text-xs text-muted-foreground text-center">
+                  <p className="text-center text-xs text-[#6d6352]">
                     Good for questions, fit checks, and meeting requests.
                   </p>
                 </form>

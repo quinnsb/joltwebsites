@@ -91,6 +91,7 @@ export function Header() {
             type="button"
             onClick={() => handleNavClick('free-teardown')}
             data-testid="button-free-teardown-nav"
+            className="border-2 border-[#17130b] bg-[#f4cf30] font-bold text-[#17130b] shadow-[3px_3px_0_#17130b] hover:bg-[#ffe36a]"
           >
             Free Teardown
           </Button>
@@ -141,7 +142,7 @@ export function Header() {
             )}
             <Button
               type="button"
-              className="w-full mt-2"
+              className="mt-2 w-full border-2 border-[#17130b] bg-[#f4cf30] font-bold text-[#17130b]"
               onClick={() => handleNavClick('free-teardown')}
               data-testid="button-free-teardown-mobile"
             >
